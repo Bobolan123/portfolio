@@ -1,11 +1,10 @@
 import React from "react";
 import { motion } from "motion/react";
 import { Mail, Phone, MapPin, Github, Linkedin, Globe } from "lucide-react";
-import avatar from "../../public/avatar.jpg";
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-50 via-white to-indigo-100 dark:from-gray-950 dark:via-gray-900 dark:to-indigo-950 px-4 py-20 transition-colors duration-500">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-50 via-white to-indigo-100 dark:from-gray-950 dark:via-gray-900 dark:to-indigo-950 px-4 pt-32 pb-20 transition-colors duration-500">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
@@ -38,12 +37,12 @@ export function Hero() {
             animate={{ scale: 1, rotate: 0 }}
             transition={{ delay: 0.2, type: "spring", stiffness: 150, damping: 15 }}
             className="w-40 h-40 mx-auto mb-8 rounded-full p-1 bg-gradient-to-r from-blue-600 to-indigo-600 shadow-2xl relative group"
-          >
+          > 
             <div className="w-full h-full rounded-full overflow-hidden bg-white dark:bg-gray-800 relative z-10">
               <img 
-                src={avatar} 
+                src="/src/public/avatar.jpg" 
                 alt="Nguyen Hoang Lan" 
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
+                className="w-full h-full object-cover object-[center_15%] transition-transform duration-500 group-hover:scale-110"
               />
             </div>
             <div className="absolute inset-0 rounded-full bg-blue-600 animate-ping opacity-20 group-hover:opacity-40 transition-opacity" />
