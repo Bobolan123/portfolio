@@ -50,7 +50,7 @@ export function Experience() {
             >
               <Briefcase className="w-10 h-10" />
             </motion.span>
-            <h2 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">Professional Journey</h2>
+            <h2 className="text-4xl font-bold pb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">Professional Journey</h2>
           </div>
           <div className="w-24 h-1.5 bg-gradient-to-r from-blue-600 to-indigo-600 mx-auto rounded-full"></div>
         </motion.div>

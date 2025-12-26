@@ -7,15 +7,19 @@ const projectsData = [
     title: "E-Learning Platform (FYP)",
     description: "A full-stack educational platform featuring RBAC, AI-powered support, and advanced search capabilities.",
     technologies: ["Next.js", "NestJS", "PostgreSQL", "MongoDB", "Elasticsearch", "Gemini AI", "Socket.IO"],
-    link: "https://github.com/Bobolan123/edu-fe",
     github: "https://github.com/Bobolan123/edu-be"
+  },
+  {
+    title: "URL Shortener (.NET)",
+    description: "A robust URL shortening service built with ASP.NET Core MVC, featuring database integration and Docker support.",
+    technologies: ["ASP.NET Core", "C#", "PostgreSQL", "Entity Framework", "Docker", "MVC"],
+    github: "https://github.com/Bobolan123/amd-dotnet"
   },
   {
     title: "SHB Football Club",
     description: "Ticketing and fan engagement platform with optimized UI and secure financial transaction processing.",
     technologies: ["React (Vite)", "Tailwind CSS", "Node.js", "PostgreSQL", "REST API"],
-    link: "#",
-    github: "#"
+    github: "https://github.com/Bobolan123/SHB-Football-Club"
   }
 ];
 
@@ -38,19 +42,18 @@ export function Projects() {
             >
               <FolderGit2 className="w-10 h-10" />
             </motion.span>
-            <h2 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">Featured Projects</h2>
+            <h2 className="text-4xl font-bold pb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">Featured Projects</h2>
           </div>
           <div className="w-24 h-1.5 bg-gradient-to-r from-blue-600 to-indigo-600 mx-auto rounded-full"></div>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {projectsData.map((project, index) => (
             <ProjectCard
               key={index}
               title={project.title}
               description={project.description}
               technologies={project.technologies}
-              link={project.link}
               github={project.github}
               index={index}
             />
@@ -65,7 +68,7 @@ const ProjectCard = ({ title, description, technologies, link, github, index }: 
   title: string;
   description: string;
   technologies: string[];
-  link: string;
+  link?: string;
   github: string;
   index: number;
   key?: React.Key;
@@ -97,15 +100,17 @@ const ProjectCard = ({ title, description, technologies, link, github, index }: 
       </div>
 
       <div className="flex gap-4 pt-6 border-t border-gray-100 dark:border-gray-700">
-        <a
-          href={link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl transition-all duration-300 font-semibold shadow-lg shadow-blue-600/20"
-        >
-          <ExternalLink className="w-4 h-4" />
-          <span className="text-sm">Live Demo</span>
-        </a>
+        {link && (
+          <a
+            href={link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl transition-all duration-300 font-semibold shadow-lg shadow-blue-600/20"
+          >
+            <ExternalLink className="w-4 h-4" />
+            <span className="text-sm">Live Demo</span>
+          </a>
+        )}
         <a
           href={github}
           target="_blank"

@@ -1,22 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { motion } from "motion/react";
 import { Mail, Send, Phone, MapPin, CheckCircle2 } from "lucide-react";
 import { Button } from "./ui/button";
+import emailjs from "@emailjs/browser";
 
 export function Contact() {
   const [formState, setFormState] = useState<"idle" | "submitting" | "success">("idle");
+  const form = useRef<HTMLFormElement>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!form.current) return;
+
     setFormState("submitting");
+
+    try {
+      // Your actual EmailJS credentials
+      const serviceId = "service_2sgqkka";
+      const templateId = "template_g4gkdds";
+      const publicKey = "CZ6DGBHruWAXf0sZf";
+
+      await emailjs.sendForm(serviceId, templateId, form.current, publicKey);
+
+      setFormState("success");
+      form.current.reset();
+    } catch (error) {
+      console.error("EmailJS Error:", error);
+      setFormState("idle");
+      alert("Oops! There was a problem sending your message. Please check your EmailJS credentials or try again later.");
+    }
     
-    // Simulating form submission
-    // In a real app, you would use Formspree, EmailJS, or your own backend
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    setFormState("success");
-    
-    // Reset form after a few seconds
-    setTimeout(() => setFormState("idle"), 3000);
+    // Reset success state after a few seconds
+    setTimeout(() => setFormState("idle"), 5000);
   };
 
   return (
@@ -93,6 +108,7 @@ export function Contact() {
             className="flex"
           >
             <form 
+              ref={form}
               onSubmit={handleSubmit}
               className="bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-xl border border-gray-100 dark:border-gray-700 space-y-6 w-full flex flex-col"
             >
@@ -100,6 +116,7 @@ export function Contact() {
                 <div className="space-y-2">
                   <label className="text-sm font-bold text-gray-700 dark:text-gray-300 ml-1">Your Name</label>
                   <input 
+                    name="from_name"
                     required
                     type="text" 
                     placeholder="John Doe"
@@ -109,6 +126,7 @@ export function Contact() {
                 <div className="space-y-2">
                   <label className="text-sm font-bold text-gray-700 dark:text-gray-300 ml-1">Email Address</label>
                   <input 
+                    name="from_email"
                     required
                     type="email" 
                     placeholder="john@example.com"
@@ -120,6 +138,7 @@ export function Contact() {
               <div className="space-y-2">
                 <label className="text-sm font-bold text-gray-700 dark:text-gray-300 ml-1">Subject</label>
                 <input 
+                  name="subject"
                   required
                   type="text" 
                   placeholder="Inquiry about project"
@@ -130,6 +149,7 @@ export function Contact() {
               <div className="space-y-2 flex-1 flex flex-col">
                 <label className="text-sm font-bold text-gray-700 dark:text-gray-300 ml-1">Message</label>
                 <textarea 
+                  name="message"
                   required
                   rows={5}
                   placeholder="How can I help you?"
@@ -169,7 +189,6 @@ export function Contact() {
     </section>
   );
 }
-
 function ContactDetail({ icon, title, content, href }: { icon: React.ReactNode; title: string; content: string; href?: string }) {
   const Wrapper = href ? "a" : "div";
   return (
