@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence, useScroll, useSpring } from "motion/react";
 import { Moon, Sun, Home, GraduationCap, Code2, Briefcase, FolderGit2, Mail } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "./ui/button";
@@ -8,12 +7,6 @@ export function Navbar() {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
-  const { scrollYProgress } = useScroll();
-  const scaleY = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
-  });
 
   const navLinks = [
     { name: "Home", href: "#home", icon: <Home className="w-5 h-5" /> },
@@ -57,15 +50,6 @@ export function Navbar() {
         {/* Full Height Background Line */}
         <div className="absolute left-1/2 top-0 bottom-0 w-[1px] bg-gray-200/50 dark:bg-gray-800/50 -translate-x-1/2 z-0" />
         
-        {/* Scroll Progress Line */}
-        <motion.div
-          className="absolute left-1/2 top-0 w-[2px] bg-gradient-to-b from-blue-600 to-indigo-600 -translate-x-1/2 z-10 origin-top"
-          style={{ 
-            height: "100%",
-            scaleY, 
-          }}
-        />
-
         <div className="flex flex-col items-center gap-10 pointer-events-auto">
           {navLinks.map((link, index) => {
             const isActive = activeSection === link.href.substring(1);
@@ -120,11 +104,7 @@ export function Navbar() {
       </div>
 
       {/* Mobile Top Navbar (Stays horizontal for better UX) */}
-      <motion.nav 
-        className="md:hidden fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-950/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800"
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-      >
+      <nav className="md:hidden fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-950/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
         <div className="px-4 h-16 flex items-center justify-between">
           <div className="text-xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
             NHL.
@@ -155,7 +135,7 @@ export function Navbar() {
             </div>
           </div>
         </div>
-      </motion.nav>
+      </nav>
     </>
   );
 }

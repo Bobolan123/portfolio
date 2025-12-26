@@ -1,5 +1,4 @@
 import React from "react";
-import { motion } from "motion/react";
 import { FolderGit2, ExternalLink, Github } from "lucide-react";
 
 const projectsData = [
@@ -27,25 +26,15 @@ export function Projects() {
   return (
     <section className="py-24 px-4 bg-white dark:bg-gray-950 transition-colors duration-500">
       <div className="max-w-6xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
+        <div className="text-center mb-16">
           <div className="flex items-center justify-center gap-4 mb-4">
-            <motion.span 
-              initial={{ rotate: -20 }}
-              whileInView={{ rotate: 0 }}
-              className="text-blue-600 dark:text-blue-400 text-4xl"
-            >
+            <span className="text-blue-600 dark:text-blue-400 text-4xl">
               <FolderGit2 className="w-10 h-10" />
-            </motion.span>
+            </span>
             <h2 className="text-4xl font-bold pb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">Featured Projects</h2>
           </div>
           <div className="w-24 h-1.5 bg-gradient-to-r from-blue-600 to-indigo-600 mx-auto rounded-full"></div>
-        </motion.div>
+        </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {projectsData.map((project, index) => (
@@ -74,14 +63,7 @@ const ProjectCard = ({ title, description, technologies, link, github, index }: 
   key?: React.Key;
 }) => {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
-      whileHover={{ y: -12 }}
-      className="group bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 flex flex-col border border-gray-100 dark:border-gray-700 relative overflow-hidden"
-    >
+    <div className="group bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 flex flex-col border border-gray-100 dark:border-gray-700 relative overflow-hidden">
       {/* Decorative background circle */}
       <div className="absolute -right-8 -top-8 w-32 h-32 bg-blue-600/5 dark:bg-blue-400/5 rounded-full group-hover:scale-150 transition-transform duration-700" />
       
@@ -121,6 +103,6 @@ const ProjectCard = ({ title, description, technologies, link, github, index }: 
           <span className="text-sm">Code</span>
         </a>
       </div>
-    </motion.div>
+    </div>
   );
 }

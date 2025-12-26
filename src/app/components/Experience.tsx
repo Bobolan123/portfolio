@@ -1,5 +1,4 @@
 import React from "react";
-import { motion } from "motion/react";
 import { Briefcase } from "lucide-react";
 
 const experienceData = [
@@ -35,25 +34,15 @@ export function Experience() {
   return (
     <section className="py-24 px-4 bg-gray-50 dark:bg-gray-900 transition-colors duration-500">
       <div className="max-w-6xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
+        <div className="text-center mb-16">
           <div className="flex items-center justify-center gap-4 mb-4">
-            <motion.span 
-              initial={{ scale: 0.5, opacity: 0 }}
-              whileInView={{ scale: 1, opacity: 1 }}
-              className="text-blue-600 dark:text-blue-400"
-            >
+            <span className="text-blue-600 dark:text-blue-400">
               <Briefcase className="w-10 h-10" />
-            </motion.span>
+            </span>
             <h2 className="text-4xl font-bold pb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">Professional Journey</h2>
           </div>
           <div className="w-24 h-1.5 bg-gradient-to-r from-blue-600 to-indigo-600 mx-auto rounded-full"></div>
-        </motion.div>
+        </div>
 
         <div className="relative">
           {/* Central Timeline Line */}
@@ -82,21 +71,12 @@ function ExperienceCard({ title, company, location, period, responsibilities, in
   const isEven = index % 2 === 0;
 
   return (
-    <motion.div
-      initial={{ opacity: 0, x: isEven ? -50 : 50 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.7, delay: index * 0.1 }}
-      className={`relative flex flex-col md:flex-row ${isEven ? 'md:flex-row-reverse' : ''} items-center`}
-    >
+    <div className={`relative flex flex-col md:flex-row ${isEven ? 'md:flex-row-reverse' : ''} items-center`}>
       {/* Timeline Dot */}
       <div className="absolute left-0 md:left-1/2 top-0 md:top-8 w-6 h-6 rounded-full bg-white dark:bg-gray-800 border-4 border-blue-600 dark:border-blue-400 transform md:-translate-x-1/2 z-10 shadow-lg shadow-blue-600/20"></div>
       
       <div className={`w-full md:w-1/2 ${isEven ? 'md:pl-12' : 'md:pr-12'} ml-10 md:ml-0`}>
-        <motion.div
-          whileHover={{ scale: 1.02 }}
-          className="bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-100 dark:border-gray-700 relative overflow-hidden group"
-        >
+        <div className="bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-100 dark:border-gray-700 relative overflow-hidden group">
           <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
             <Briefcase className="w-12 h-12" />
           </div>
@@ -115,20 +95,16 @@ function ExperienceCard({ title, company, location, period, responsibilities, in
           
           <ul className="space-y-3">
             {responsibilities.map((resp, idx) => (
-              <motion.li
+              <li
                 key={idx}
-                initial={{ opacity: 0, x: -10 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3 + idx * 0.1 }}
                 className="text-gray-700 dark:text-gray-300 pl-6 relative before:content-[''] before:absolute before:left-0 before:top-2.5 before:w-2 before:h-2 before:bg-blue-600 dark:before:bg-blue-400 before:rounded-full leading-relaxed"
               >
                 {resp}
-              </motion.li>
+              </li>
             ))}
           </ul>
-        </motion.div>
+        </div>
       </div>
-    </motion.div>
+    </div>
   );
 }

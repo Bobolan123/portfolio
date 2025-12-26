@@ -1,5 +1,4 @@
 import React, { useState, useRef } from "react";
-import { motion } from "motion/react";
 import { Mail, Send, Phone, MapPin, CheckCircle2 } from "lucide-react";
 import { Button } from "./ui/button";
 import emailjs from "@emailjs/browser";
@@ -37,13 +36,7 @@ export function Contact() {
   return (
     <section className="py-24 px-4 bg-gray-50 dark:bg-gray-900/50 transition-colors duration-500">
       <div className="max-w-6xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
+        <div className="text-center mb-16">
           <div className="flex items-center justify-center gap-4 mb-4">
             <span className="text-blue-600 dark:text-blue-400">
               <Mail className="w-10 h-10" />
@@ -54,17 +47,11 @@ export function Contact() {
           <p className="mt-6 text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-lg">
             Have a project in mind or just want to say hi? Feel free to reach out. I'm always open to new opportunities!
           </p>
-        </motion.div>
+        </div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-stretch">
           {/* Contact Info */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="flex flex-col gap-8"
-          >
+          <div className="flex flex-col gap-8">
             <div className="bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-xl border border-gray-100 dark:border-gray-700 flex-1 flex flex-col">
               <h3 className="text-2xl font-bold mb-8 text-gray-800 dark:text-gray-100">Contact Information</h3>
               
@@ -97,16 +84,10 @@ export function Contact() {
               </div>
               <Mail className="absolute -right-4 -bottom-4 w-24 h-24 opacity-10 rotate-12" />
             </div>
-          </motion.div>
+          </div>
 
           {/* Contact Form */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="flex"
-          >
+          <div className="flex">
             <form 
               ref={form}
               onSubmit={handleSubmit}
@@ -183,7 +164,7 @@ export function Contact() {
                 )}
               </Button>
             </form>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
