@@ -14,10 +14,15 @@ export function Contact() {
     setFormState("submitting");
 
     try {
-      // Your actual EmailJS credentials
-      const serviceId = "service_2sgqkka";
-      const templateId = "template_g4gkdds";
-      const publicKey = "CZ6DGBHruWAXf0sZf";
+      // Accessing EmailJS credentials from environment variables (Vite)
+      const env = (import.meta as any).env;
+      const serviceId = env.VITE_EMAILJS_SERVICE_ID;
+      const templateId = env.VITE_EMAILJS_TEMPLATE_ID;
+      const publicKey = env.VITE_EMAILJS_PUBLIC_KEY;
+
+      if (!serviceId || !templateId || !publicKey) {
+        throw new Error("Missing EmailJS environment variables");
+      }
 
       await emailjs.sendForm(serviceId, templateId, form.current, publicKey);
 
