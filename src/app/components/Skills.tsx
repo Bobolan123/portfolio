@@ -16,7 +16,7 @@ const skillsData = {
   },
   "Soft Skills": {
     icon: <Users />,
-    skills: ["Teamwork", "Agile/Scrum", "Problem Solving", "Communication", "Tech-Savvy"]
+    skills: ["Teamwork", "Agile/Scrum", "Problem Solving", "Communication", "Documentation"]
   }
 };
 
@@ -25,7 +25,7 @@ export function Skills() {
     <section className="py-24 px-4 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-indigo-950/20 transition-colors duration-500">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4 pb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">Technical Skills</h2>
+          <h2 className="text-4xl font-bold mb-4 pb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">Skills</h2>
           <div className="w-24 h-1.5 bg-gradient-to-r from-blue-600 to-indigo-600 mx-auto rounded-full"></div>
         </div>
 

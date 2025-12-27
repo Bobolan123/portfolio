@@ -31,7 +31,7 @@ export function Hero() {
           </h1>
 
           <p className="text-2xl md:text-3xl font-medium text-gray-700 dark:text-gray-300 mb-8">
-            Web Developer & Aspiring Full-stack Developer
+             Software Engineer
           </p>
 
           <p className="text-lg text-gray-600 dark:text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
