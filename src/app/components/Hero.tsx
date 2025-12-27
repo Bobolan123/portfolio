@@ -67,7 +67,7 @@ export function Hero() {
               <SocialLink icon={<Linkedin className="w-6 h-6" />} href="https://linkedin.com/in/lannguyen124" />
               <div className="h-10 w-[1px] bg-border mx-2"></div>
               <a 
-                href="/src/public/Core Resume.pdf"
+                href="/Core%20Resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group relative inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-600 dark:to-indigo-600 text-white rounded-xl font-bold transition-all shadow-lg overflow-hidden hover:scale-105 active:scale-95"
