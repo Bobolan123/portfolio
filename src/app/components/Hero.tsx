@@ -1,10 +1,30 @@
 import React from "react";
-import { motion } from "motion/react";
+import { motion, useScroll, useSpring } from "motion/react";
 import { Mail, Phone, MapPin, Github, Linkedin, Terminal as TerminalIcon, Code2, FileText, ArrowRight } from "lucide-react";
 
 export function Hero() {
+  const [mousePos, setMousePos] = React.useState({ x: 0, y: 0 });
+
+  React.useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePos({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#020617] text-slate-200 px-4 pt-32 pb-20 transition-colors duration-500">
+      {/* Dynamic Cursor Follower */}
+      <motion.div
+        animate={{
+          x: mousePos.x - 150,
+          y: mousePos.y - 150,
+        }}
+        transition={{ type: "spring", damping: 30, stiffness: 200, mass: 0.5 }}
+        className="fixed top-0 left-0 w-[300px] h-[300px] bg-blue-500/10 rounded-full blur-[100px] pointer-events-none z-0 hidden lg:block"
+      />
+
       {/* Coding Grid Background */}
       <div className="absolute inset-0 z-0 opacity-20" 
            style={{ backgroundImage: 'radial-gradient(#1e293b 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
@@ -37,27 +57,47 @@ export function Hero() {
             transition={{ duration: 0.8 }}
             className="text-left"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-mono mb-6">
+            <motion.div 
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-mono mb-6"
+            >
               <TerminalIcon className="w-3 h-3" />
               <span>system.status = "ready"</span>
-            </div>
+            </motion.div>
 
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight leading-tight">
+            <motion.h1 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="text-5xl md:text-7xl font-bold mb-6 tracking-tight leading-tight"
+            >
               <span className="text-white">Nguyen</span><br />
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-400">Hoang Lan</span>
-            </h1>
+            </motion.h1>
 
-            <div className="flex items-center gap-3 mb-8">
+            <motion.div 
+              initial={{ opacity: 0, scaleX: 0 }}
+              animate={{ opacity: 1, scaleX: 1 }}
+              transition={{ delay: 0.5, duration: 0.8 }}
+              className="flex items-center gap-3 mb-8 origin-left"
+            >
               <div className="h-[1px] w-12 bg-blue-500/50"></div>
               <p className="text-xl md:text-2xl font-mono text-blue-400">
                 &lt;SoftwareEngineer /&gt;
               </p>
-            </div>
+            </motion.div>
 
-            <p className="text-lg text-slate-400 mb-10 max-w-xl leading-relaxed">
-              Final-year Computing student at the University of Greenwich. 
-              Focused on building robust, scalable architectures and crafting clean, maintainable code.
-            </p>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+              className="text-lg text-slate-400 mb-10 max-w-xl leading-relaxed"
+            >
+              Software Engineer focused on building robust, scalable architectures and crafting clean, maintainable code. 
+              Dedicated to solving complex problems and delivering high-quality digital experiences.
+            </motion.p>
 
             <div className="flex flex-wrap gap-4 mb-10">
               <ContactItem icon={<Mail className="w-4 h-4" />} text="logannguyenlan@gmail.com" />
@@ -130,21 +170,17 @@ export function Hero() {
                   <span className="text-green-400">"C#"</span>, 
                   <span className="text-green-400">"Python"</span>, 
                   <span className="text-green-400">"Node.js"</span>, 
-
-                    <span className="text-green-400">"React"</span>, 
+                  <span className="text-green-400">"React"</span>, 
                   </p>
                 </div>
                 <div className="flex gap-4">
                   <span className="text-slate-600 select-none">06</span>
                   <p className="ml-8">
                   <span className="text-green-400">"Next.js"</span>, 
-
                   <span className="text-green-400">".NET"</span>,
-
-                    <span className="text-green-400">"NestJS"</span>, 
-                    <span className="text-green-400">"PostgreSQL"</span>, 
-                    <span className="text-green-400">"MongoDB"</span>, 
-
+                  <span className="text-green-400">"NestJS"</span>, 
+                  <span className="text-green-400">"PostgreSQL"</span>, 
+                  <span className="text-green-400">"MongoDB"</span>, 
                   </p>
                 </div>
                 <div className="flex gap-4">

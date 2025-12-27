@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "motion/react";
+import { motion, useScroll, useSpring } from "motion/react";
 import { Briefcase, Calendar, MapPin, Terminal } from "lucide-react";
 
 const experienceData = [
@@ -60,6 +60,13 @@ const experienceData = [
 ];
 
 export function Experience() {
+  const { scrollYProgress } = useScroll();
+  const scaleY = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
+
   return (
     <section className="py-24 px-4 bg-[#020617] relative overflow-hidden">
       {/* Background Decor */}
@@ -97,8 +104,12 @@ export function Experience() {
         </motion.div>
 
         <div className="relative">
-          {/* Central Timeline Line */}
-          <div className="absolute left-1/2 top-0 bottom-0 w-px bg-slate-800 hidden md:block -translate-x-1/2" />
+          {/* Central Timeline Line with Scroll Animation */}
+          <div className="absolute left-1/2 top-0 bottom-0 w-px bg-slate-800/50 hidden md:block -translate-x-1/2" />
+          <motion.div 
+            style={{ scaleY, originY: 0 }}
+            className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-blue-500 via-indigo-500 to-amber-500 hidden md:block -translate-x-1/2 z-10"
+          />
 
           <div className="space-y-12 md:space-y-0">
             {experienceData.map((exp, index) => (

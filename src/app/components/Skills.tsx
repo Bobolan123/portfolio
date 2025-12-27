@@ -25,6 +25,28 @@ const skillsData = [
   }
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: "spring",
+      stiffness: 100,
+    },
+  },
+};
+
 export function Skills() {
   return (
     <section className="py-24 px-4 bg-[#020617] relative overflow-hidden">
@@ -46,7 +68,13 @@ export function Skills() {
           <div className="w-20 h-1 bg-blue-600 mx-auto rounded-full"></div>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
+        >
           {skillsData.map((item, index) => (
             <SkillCard
               key={item.category}
@@ -56,7 +84,7 @@ export function Skills() {
               index={index}
             />
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
@@ -71,10 +99,7 @@ function SkillCard({ category, icon, skills, index }: {
 }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: index * 0.1 }}
+      variants={itemVariants}
       whileHover={{ y: -5 }}
       className="group bg-slate-900/50 border border-slate-800 p-6 rounded-2xl hover:border-blue-500/50 transition-all duration-300 relative"
     >
