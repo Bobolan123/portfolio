@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "motion/react";
-import { Mail, Phone, MapPin, Github, Linkedin, Terminal as TerminalIcon, Code2 } from "lucide-react";
+import { Mail, Phone, MapPin, Github, Linkedin, Terminal as TerminalIcon, Code2, FileText, ArrowRight } from "lucide-react";
 
 export function Hero() {
   return (
@@ -68,13 +68,24 @@ export function Hero() {
               <SocialLink icon={<Github className="w-6 h-6" />} href="https://github.com/Bobolan123" />
               <SocialLink icon={<Linkedin className="w-6 h-6" />} href="https://linkedin.com/in/lannguyen124" />
               <div className="h-10 w-[1px] bg-slate-800 mx-2"></div>
-              <motion.button 
-                whileHover={{ scale: 1.05 }}
+              <motion.a 
+                href="/src/public/Core Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ 
+                  scale: 1.05,
+                  boxShadow: "0 0 25px rgba(37, 99, 235, 0.5)"
+                }}
                 whileTap={{ scale: 0.95 }}
-                className="px-6 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-lg font-bold transition-colors shadow-lg shadow-blue-600/20"
+                className="group relative inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl font-bold transition-all shadow-lg overflow-hidden"
               >
-                View Resume
-              </motion.button>
+                {/* Shine effect */}
+                <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
+                
+                <FileText className="w-5 h-5 group-hover:rotate-12 transition-transform" />
+                <span>View Resume</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </motion.a>
             </div>
           </motion.div>
 
@@ -114,11 +125,27 @@ export function Hero() {
                 </div>
                 <div className="flex gap-4">
                   <span className="text-slate-600 select-none">05</span>
-                  <p className="ml-8"><span className="text-green-400">"React"</span>, <span className="text-green-400">"Next.js"</span>, <span className="text-green-400">"TypeScript"</span>,</p>
+                  <p className="ml-8">
+                  <span className="text-green-400">"TypeScript"</span>, 
+                  <span className="text-green-400">"C#"</span>, 
+                  <span className="text-green-400">"Python"</span>, 
+                  <span className="text-green-400">"Node.js"</span>, 
+
+                    <span className="text-green-400">"React"</span>, 
+                  </p>
                 </div>
                 <div className="flex gap-4">
                   <span className="text-slate-600 select-none">06</span>
-                  <p className="ml-8"><span className="text-green-400">"Node.js"</span>, <span className="text-green-400">".NET"</span>, <span className="text-green-400">"PostgreSQL"</span></p>
+                  <p className="ml-8">
+                  <span className="text-green-400">"Next.js"</span>, 
+
+                  <span className="text-green-400">".NET"</span>,
+
+                    <span className="text-green-400">"NestJS"</span>, 
+                    <span className="text-green-400">"PostgreSQL"</span>, 
+                    <span className="text-green-400">"MongoDB"</span>, 
+
+                  </p>
                 </div>
                 <div className="flex gap-4">
                   <span className="text-slate-600 select-none">07</span>
@@ -126,14 +153,10 @@ export function Hero() {
                 </div>
                 <div className="flex gap-4">
                   <span className="text-slate-600 select-none">08</span>
-                  <p className="ml-4"><span className="text-slate-400">status:</span> <span className="text-green-400">"Ready for impact"</span>,</p>
+                  <p className="ml-4"><span className="text-slate-400">status:</span> <span className="text-green-400">"Ready for impact"</span></p>
                 </div>
                 <div className="flex gap-4">
                   <span className="text-slate-600 select-none">09</span>
-                  <p className="ml-4"><span className="text-slate-400">quote:</span> <span className="text-green-400">"Talk is cheap. Show me the code."</span></p>
-                </div>
-                <div className="flex gap-4">
-                  <span className="text-slate-600 select-none">10</span>
                   <p>&#125;;</p>
                 </div>
                 <motion.div 

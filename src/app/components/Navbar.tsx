@@ -49,7 +49,7 @@ export function Navbar() {
       <div className="fixed left-8 top-0 bottom-0 z-50 hidden lg:flex flex-col items-center justify-center pointer-events-none">
         {/* Full Height Background Line */}
         <div className="absolute left-1/2 top-0 bottom-0 w-[1px] bg-gray-200/50 dark:bg-gray-800/50 -translate-x-1/2 z-0" />
-        
+
         <div className="flex flex-col items-center gap-10 pointer-events-auto">
           {navLinks.map((link, index) => {
             const isActive = activeSection === link.href.substring(1);

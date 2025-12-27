@@ -7,8 +7,8 @@ const educationData = [
     degree: "BSc in Computing",
     school: "University of Greenwich",
     location: "Da Nang, Viet Nam",
-    year: "2022 - Present",
-    description: "Final-year student focusing on software development and computing systems. GPA: 3.7/4.0"
+    year: "2022 - 2026",
+    description: "Focusing on software development and computing systems. GPA: 3.7/4.0"
   },
   {
     degree: "Vstep Certificate",
@@ -54,6 +54,7 @@ function EducationCard({ degree, school, location, year, description, index }: {
   year: string;
   description: string;
   index: number;
+  key?: React.Key;
 }) {
   return (
     <motion.div

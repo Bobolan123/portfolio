@@ -212,4 +212,3 @@ function ContactDetail({ icon, title, content, href }: { icon: React.ReactNode; 
     </Wrapper>
   );
 }
-
