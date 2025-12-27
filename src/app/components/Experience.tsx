@@ -62,7 +62,7 @@ export function Experience() {
   return (
     <section className="py-24 px-4 bg-background relative overflow-hidden transition-colors duration-500">
       {/* Background Decor */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,var(--color-primary),transparent_70%)] opacity-[0.03] dark:opacity-[0.05] pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,var(--color-primary),transparent_70%)] opacity-[0.05] dark:opacity-[0.05] pointer-events-none" />
 
       <div className="max-w-6xl mx-auto relative">
         <div className="mb-20 text-center">

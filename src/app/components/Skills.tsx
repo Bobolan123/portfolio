@@ -64,9 +64,9 @@ function SkillCard({ category, icon, skills, index }: {
   key?: React.Key;
 }) {
   return (
-    <div className="group bg-card dark:bg-slate-900/50 border border-border dark:border-slate-800 p-6 rounded-2xl hover:border-blue-500/50 transition-all duration-300 relative hover:-translate-y-1 shadow-sm hover:shadow-md">
+    <div className="group bg-card dark:bg-slate-900/50 border border-border dark:border-slate-800 p-6 rounded-2xl hover:border-blue-500/50 transition-all duration-300 relative hover:-translate-y-1 shadow-[0_2px_10px_-3px_rgba(0,0,0,0.07)] dark:shadow-none hover:shadow-[0_8px_30px_-4px_rgba(0,0,0,0.1)] dark:hover:shadow-none">
       <div className="flex items-center gap-3 mb-6">
-        <div className="p-2.5 rounded-xl bg-muted dark:bg-slate-800 text-blue-600 dark:text-blue-400 group-hover:scale-110 transition-transform">
+        <div className="p-2.5 rounded-xl bg-muted dark:bg-slate-800 text-blue-600 dark:text-blue-400 group-hover:scale-110 transition-transform shadow-sm dark:shadow-none">
           {icon}
         </div>
         <h3 className="text-lg font-bold text-foreground transition-colors">{category}</h3>

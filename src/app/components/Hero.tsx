@@ -23,13 +23,13 @@ export function Hero() {
       />
 
       {/* Coding Grid Background */}
-      <div className="absolute inset-0 z-0 opacity-5 dark:opacity-20" 
-           style={{ backgroundImage: 'radial-gradient(var(--border) 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
+      <div className="absolute inset-0 z-0 opacity-[0.03] dark:opacity-20" 
+           style={{ backgroundImage: 'radial-gradient(var(--foreground) 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
       
       {/* Animated Glowing Orbs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-[10%] left-[10%] w-[400px] h-[400px] bg-blue-600/10 dark:bg-blue-600/20 rounded-full blur-[120px]" />
-        <div className="absolute bottom-[10%] right-[10%] w-[500px] h-[500px] bg-indigo-600/10 dark:bg-indigo-600/20 rounded-full blur-[120px]" />
+        <div className="absolute top-[10%] left-[10%] w-[400px] h-[400px] bg-blue-600/[0.05] dark:bg-blue-600/20 rounded-full blur-[120px]" />
+        <div className="absolute bottom-[10%] right-[10%] w-[500px] h-[500px] bg-indigo-600/[0.05] dark:bg-indigo-600/20 rounded-full blur-[120px]" />
       </div>
 
       <div className="max-w-5xl w-full relative z-10">

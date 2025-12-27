@@ -65,13 +65,13 @@ export function Navbar() {
                   className={`relative z-20 w-12 h-12 flex items-center justify-center rounded-xl transition-all duration-500 ${
                     isActive 
                       ? "bg-blue-600 text-white shadow-lg shadow-blue-600/40 -translate-x-1 scale-110" 
-                      : "bg-card dark:bg-slate-900/80 backdrop-blur-md text-muted-foreground border border-border dark:border-slate-800 hover:border-blue-500/50 hover:text-blue-600 dark:hover:text-blue-400 hover:-translate-x-1 shadow-sm"
+                      : "bg-white/80 dark:bg-slate-900/80 backdrop-blur-md text-muted-foreground border border-border dark:border-slate-800 hover:border-blue-500/50 hover:text-blue-600 dark:hover:text-blue-400 hover:-translate-x-1 shadow-sm"
                   }`}
                 >
                   {link.icon}
                   {isActive && (
                     <div 
-                      className="absolute inset-0 rounded-xl bg-blue-500/20 blur-md -z-10"
+                      className="absolute inset-0 rounded-xl bg-blue-500/10 dark:bg-blue-500/20 blur-md -z-10"
                     />
                   )}
                 </a>
