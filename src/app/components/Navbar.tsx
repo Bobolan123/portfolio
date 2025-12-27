@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Moon, Sun, Home, GraduationCap, Code2, Briefcase, FolderGit2, Mail } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "./ui/button";
-import { motion, AnimatePresence } from "motion/react";
 
 export function Navbar() {
   const { theme, setTheme } = useTheme();
@@ -51,31 +50,27 @@ export function Navbar() {
       {/* Desktop Vertical Navbar */}
       <div className="fixed left-8 top-0 bottom-0 z-50 hidden lg:flex flex-col items-center justify-center pointer-events-none">
         {/* Full Height Background Line */}
-        <div className="absolute left-1/2 top-0 bottom-0 w-[1px] bg-slate-800/50 -translate-x-1/2 z-0" />
+        <div className="absolute left-1/2 top-0 bottom-0 w-[1px] bg-border dark:bg-slate-800/50 -translate-x-1/2 z-0" />
 
         <div className="flex flex-col items-center gap-8 pointer-events-auto">
           {navLinks.map((link, index) => {
             const isActive = activeSection === link.href.substring(1);
             return (
-              <motion.div 
+              <div 
                 key={link.name} 
                 className="relative group flex items-center"
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: index * 0.1 }}
               >
                 <a
                   href={link.href}
                   className={`relative z-20 w-12 h-12 flex items-center justify-center rounded-xl transition-all duration-500 ${
                     isActive 
                       ? "bg-blue-600 text-white shadow-lg shadow-blue-600/40 -translate-x-1 scale-110" 
-                      : "bg-slate-900/80 backdrop-blur-md text-slate-400 border border-slate-800 hover:border-blue-500/50 hover:text-blue-400 hover:-translate-x-1"
+                      : "bg-card dark:bg-slate-900/80 backdrop-blur-md text-muted-foreground border border-border dark:border-slate-800 hover:border-blue-500/50 hover:text-blue-600 dark:hover:text-blue-400 hover:-translate-x-1 shadow-sm"
                   }`}
                 >
                   {link.icon}
                   {isActive && (
-                    <motion.div 
-                      layoutId="navGlow"
+                    <div 
                       className="absolute inset-0 rounded-xl bg-blue-500/20 blur-md -z-10"
                     />
                   )}
@@ -83,14 +78,14 @@ export function Navbar() {
                 
                 {/* Tooltip Label */}
                 <div className="absolute left-16 opacity-0 group-hover:opacity-100 pointer-events-none transition-all duration-300 translate-x-[-10px] group-hover:translate-x-0">
-                  <div className="bg-slate-900 border border-slate-800 text-blue-400 text-[10px] uppercase tracking-widest font-bold py-2 px-4 rounded-lg shadow-2xl whitespace-nowrap">
+                  <div className="bg-card dark:bg-slate-900 border border-border dark:border-slate-800 text-blue-600 dark:text-blue-400 text-[10px] uppercase tracking-widest font-bold py-2 px-4 rounded-lg shadow-xl whitespace-nowrap">
                     {link.name}
                   </div>
                 </div>
 
                 {/* Connection Line to Center Line */}
                 <div className={`absolute right-full w-4 h-[1px] ${isActive ? 'bg-blue-600' : 'bg-slate-800'} transition-colors duration-500`} />
-              </motion.div>
+              </div>
             );
           })}
         </div>
@@ -98,43 +93,27 @@ export function Navbar() {
 
       {/* Mobile Top Navbar */}
       <nav className={`md:hidden fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-[#020617]/90 backdrop-blur-lg border-b border-slate-800 py-3" : "bg-transparent py-5"
+        isScrolled ? "bg-background/90 backdrop-blur-lg border-b border-border py-3 shadow-sm" : "bg-transparent py-5"
       }`}>
         <div className="px-6 flex items-center justify-between">
-          <div className="text-xl font-black tracking-tighter text-white">
-            <span className="text-blue-500">NH</span>L.
+          <div className="text-xl font-black tracking-tighter text-foreground">
+            <span className="text-blue-600 dark:text-blue-500">NH</span>L.
           </div>
           <div className="flex items-center gap-4">
             <Button
               variant="ghost"
               size="icon"
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="w-10 h-10 rounded-xl bg-slate-900/50 border border-slate-800"
+              className="w-10 h-10 rounded-xl bg-muted dark:bg-slate-900 border border-border dark:border-slate-800"
             >
-              <AnimatePresence mode="wait">
-                {theme === "dark" ? (
-                  <motion.div
-                    key="sun"
-                    initial={{ scale: 0, rotate: -90 }}
-                    animate={{ scale: 1, rotate: 0 }}
-                    exit={{ scale: 0, rotate: 90 }}
-                  >
-                    <Sun className="w-5 h-5 text-yellow-500" />
-                  </motion.div>
-                ) : (
-                  <motion.div
-                    key="moon"
-                    initial={{ scale: 0, rotate: -90 }}
-                    animate={{ scale: 1, rotate: 0 }}
-                    exit={{ scale: 0, rotate: 90 }}
-                  >
-                    <Moon className="w-5 h-5 text-blue-400" />
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              {theme === "dark" ? (
+                <Sun className="w-5 h-5 text-yellow-500" />
+              ) : (
+                <Moon className="w-5 h-5 text-blue-600" />
+              )}
             </Button>
             
-            <div className="flex bg-slate-900/50 backdrop-blur-md p-1 rounded-xl border border-slate-800">
+            <div className="flex bg-muted/50 dark:bg-slate-900/50 backdrop-blur-md p-1 rounded-xl border border-border dark:border-slate-800">
               {navLinks.slice(0, 4).map((link) => (
                 <a
                   key={link.name}
@@ -142,7 +121,7 @@ export function Navbar() {
                   className={`w-9 h-9 flex items-center justify-center rounded-lg transition-all ${
                     activeSection === link.href.substring(1)
                       ? "bg-blue-600 text-white shadow-lg"
-                      : "text-slate-500"
+                      : "text-muted-foreground"
                   }`}
                 >
                   {React.cloneElement(link.icon as React.ReactElement, { className: "w-4 h-4" })}
@@ -155,26 +134,20 @@ export function Navbar() {
 
       {/* Theme Toggle Desktop */}
       <div className="fixed right-8 bottom-8 z-50 hidden lg:block">
-        <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+        <div className="hover:scale-110 active:scale-95 transition-transform">
           <Button
             variant="ghost"
             size="icon"
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className="w-14 h-14 rounded-2xl bg-slate-900/80 backdrop-blur-lg border border-slate-800 hover:border-blue-500/50 shadow-2xl group transition-all"
+            className="w-14 h-14 rounded-2xl bg-card/80 dark:bg-slate-900/80 backdrop-blur-lg border border-border dark:border-slate-800 hover:border-blue-500/50 shadow-2xl group transition-all"
           >
-            <AnimatePresence mode="wait">
-              {theme === "dark" ? (
-                <motion.div key="sun" initial={{ opacity: 0, rotate: -45 }} animate={{ opacity: 1, rotate: 0 }} exit={{ opacity: 0, rotate: 45 }}>
-                  <Sun className="w-6 h-6 text-yellow-500" />
-                </motion.div>
-              ) : (
-                <motion.div key="moon" initial={{ opacity: 0, rotate: -45 }} animate={{ opacity: 1, rotate: 0 }} exit={{ opacity: 0, rotate: 45 }}>
-                  <Moon className="w-6 h-6 text-blue-500" />
-                </motion.div>
-              )}
-            </AnimatePresence>
+            {theme === "dark" ? (
+              <Sun className="w-6 h-6 text-yellow-500 transition-transform group-hover:rotate-12" />
+            ) : (
+              <Moon className="w-6 h-6 text-blue-600 transition-transform group-hover:rotate-12" />
+            )}
           </Button>
-        </motion.div>
+        </div>
       </div>
     </>
   );

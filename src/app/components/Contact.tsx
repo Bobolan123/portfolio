@@ -1,5 +1,4 @@
 import React, { useState, useRef } from "react";
-import { motion } from "motion/react";
 import { Mail, Send, Phone, MapPin, CheckCircle2, Terminal } from "lucide-react";
 import { Button } from "./ui/button";
 import emailjs from "@emailjs/browser";
@@ -40,32 +39,22 @@ export function Contact() {
   };
 
   return (
-    <section className="py-24 px-4 bg-[#020617] relative">
+    <section className="py-24 px-4 bg-background relative transition-colors duration-500">
       <div className="max-w-6xl mx-auto relative z-10">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-20"
-        >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-mono mb-4">
+        <div className="text-center mb-20">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-muted dark:bg-slate-900 border border-border dark:border-slate-800 text-blue-600 dark:text-blue-400 text-xs font-mono mb-4 shadow-sm">
             <Mail className="w-3 h-3" />
             <span>contact.initiate()</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">Get In <span className="text-blue-500">Touch</span></h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4 tracking-tight">Get In <span className="text-blue-600 dark:text-blue-500">Touch</span></h2>
           <div className="w-20 h-1 bg-blue-600 mx-auto rounded-full"></div>
-        </motion.div>
+        </div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-stretch">
           {/* Contact Info */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="flex flex-col gap-8"
-          >
-            <div className="bg-slate-900/40 border border-slate-800 p-10 rounded-3xl flex-1 flex flex-col">
-              <h3 className="text-2xl font-bold mb-8 text-white">Contact Information</h3>
+          <div className="flex flex-col gap-8">
+            <div className="bg-card dark:bg-slate-900/40 border border-border dark:border-slate-800 p-10 rounded-3xl flex-1 flex flex-col shadow-sm">
+              <h3 className="text-2xl font-bold mb-8 text-foreground">Contact Information</h3>
               
               <div className="space-y-8 flex-1 flex flex-col justify-center">
                 <ContactDetail 
@@ -89,76 +78,71 @@ export function Contact() {
             </div>
 
             {/* Decorative Terminal Card */}
-            <div className="bg-[#0f172a] border border-slate-800 p-6 rounded-2xl relative overflow-hidden group">
+            <div className="bg-muted dark:bg-slate-950 border border-border dark:border-slate-800 p-6 rounded-2xl relative overflow-hidden group shadow-sm">
               <div className="flex items-center gap-2 mb-4">
                 <div className="flex gap-1.5">
-                  <div className="w-2 h-2 rounded-full bg-slate-700"></div>
-                  <div className="w-2 h-2 rounded-full bg-slate-700"></div>
-                  <div className="w-2 h-2 rounded-full bg-slate-700"></div>
+                  <div className="w-2 h-2 rounded-full bg-red-500/40"></div>
+                  <div className="w-2 h-2 rounded-full bg-yellow-500/40"></div>
+                  <div className="w-2 h-2 rounded-full bg-green-500/40"></div>
                 </div>
-                <span className="text-[10px] font-mono text-slate-600">terminal.log</span>
+                <span className="text-[10px] font-mono text-muted-foreground dark:text-slate-600">terminal.log</span>
               </div>
-              <p className="text-blue-400 font-mono text-sm leading-relaxed">
-                &gt; I'm currently seeking new opportunities. 
+              <p className="text-foreground dark:text-blue-400 font-mono text-sm leading-relaxed">
+                <span className="text-blue-600 dark:text-pink-500">&gt;</span> I'm currently seeking new opportunities. 
                 Feel free to reach out for collaborations or just a quick chat about tech!
               </p>
             </div>
-          </motion.div>
+          </div>
 
           {/* Contact Form */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="flex"
-          >
+          <div className="flex">
             <form 
               ref={form}
               onSubmit={handleSubmit}
-              className="bg-slate-900/40 border border-slate-800 p-10 rounded-3xl space-y-6 w-full flex flex-col"
+              className="bg-card dark:bg-slate-900/40 border border-border dark:border-slate-800 p-10 rounded-3xl space-y-6 w-full flex flex-col shadow-sm"
             >
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label className="text-xs font-mono text-slate-500 uppercase tracking-widest ml-1">Name</label>
+                  <label className="text-xs font-mono text-muted-foreground uppercase tracking-widest ml-1">Name</label>
                   <input 
                     name="from_name"
                     required
                     type="text" 
                     placeholder="John Doe"
-                    className="w-full px-4 py-3 rounded-xl bg-slate-950/50 border border-slate-800 focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/20 outline-none transition-all text-slate-200 font-mono text-sm"
+                    className="w-full px-4 py-3 rounded-xl bg-muted/50 dark:bg-slate-950/50 border border-border dark:border-slate-800 focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/20 outline-none transition-all text-foreground font-mono text-sm"
                   />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-xs font-mono text-slate-500 uppercase tracking-widest ml-1">Email</label>
+                  <label className="text-xs font-mono text-muted-foreground uppercase tracking-widest ml-1">Email</label>
                   <input 
                     name="from_email"
                     required
                     type="email" 
                     placeholder="john@example.com"
-                    className="w-full px-4 py-3 rounded-xl bg-slate-950/50 border border-slate-800 focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/20 outline-none transition-all text-slate-200 font-mono text-sm"
+                    className="w-full px-4 py-3 rounded-xl bg-muted/50 dark:bg-slate-950/50 border border-border dark:border-slate-800 focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/20 outline-none transition-all text-foreground font-mono text-sm"
                   />
                 </div>
               </div>
 
               <div className="space-y-2">
-                <label className="text-xs font-mono text-slate-500 uppercase tracking-widest ml-1">Subject</label>
+                <label className="text-xs font-mono text-muted-foreground uppercase tracking-widest ml-1">Subject</label>
                 <input 
                   name="subject"
                   required
                   type="text" 
                   placeholder="Inquiry about project"
-                  className="w-full px-4 py-3 rounded-xl bg-slate-950/50 border border-slate-800 focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/20 outline-none transition-all text-slate-200 font-mono text-sm"
+                  className="w-full px-4 py-3 rounded-xl bg-muted/50 dark:bg-slate-950/50 border border-border dark:border-slate-800 focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/20 outline-none transition-all text-foreground font-mono text-sm"
                 />
               </div>
 
               <div className="space-y-2 flex-1 flex flex-col">
-                <label className="text-xs font-mono text-slate-500 uppercase tracking-widest ml-1">Message</label>
+                <label className="text-xs font-mono text-muted-foreground uppercase tracking-widest ml-1">Message</label>
                 <textarea 
                   name="message"
                   required
                   rows={5}
                   placeholder="How can I help you?"
-                  className="w-full px-4 py-3 rounded-xl bg-slate-950/50 border border-slate-800 focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/20 outline-none transition-all text-slate-200 font-mono text-sm resize-none flex-1"
+                  className="w-full px-4 py-3 rounded-xl bg-muted/50 dark:bg-slate-950/50 border border-border dark:border-slate-800 focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/20 outline-none transition-all text-foreground font-mono text-sm resize-none flex-1"
                 />
               </div>
 
@@ -188,7 +172,7 @@ export function Contact() {
                 )}
               </Button>
             </form>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
@@ -202,12 +186,12 @@ function ContactDetail({ icon, title, content, href }: { icon: React.ReactNode; 
       href={href}
       className={`flex items-start gap-5 group ${href ? 'cursor-pointer' : ''}`}
     >
-      <div className="w-12 h-12 rounded-xl bg-slate-800 flex items-center justify-center text-blue-400 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
+      <div className="w-12 h-12 rounded-xl bg-muted dark:bg-slate-800 flex items-center justify-center text-blue-600 dark:text-blue-400 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
         {icon}
       </div>
       <div>
-        <h4 className="text-[10px] font-mono text-slate-500 uppercase tracking-widest mb-1">{title}</h4>
-        <p className="text-lg font-bold text-slate-200 group-hover:text-blue-400 transition-colors">{content}</p>
+        <h4 className="text-[10px] font-mono text-muted-foreground uppercase tracking-widest mb-1">{title}</h4>
+        <p className="text-lg font-bold text-foreground group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">{content}</p>
       </div>
     </Wrapper>
   );
