@@ -1,41 +1,58 @@
 import React from "react";
-import { Terminal, Layout, Server, Users } from "lucide-react";
+import { motion } from "motion/react";
+import { Terminal, Layout, Server, Users, Code2, Zap } from "lucide-react";
 
-const skillsData = {
-  "Programming Languages": {
-    icon: <Terminal />,
-    skills: ["JavaScript", "TypeScript", "C#", "Python"]
+const skillsData = [
+  {
+    category: "Languages",
+    icon: <Terminal className="w-5 h-5" />,
+    skills: ["JavaScript", "TypeScript", "C#", "Python"],
   },
-  "Frontend Development": {
-    icon: <Layout />,
-    skills: ["React.js", "Next.js", "Tailwind CSS", "Vite","Redux"]
+  {
+    category: "Frontend",
+    icon: <Layout className="w-5 h-5" />,
+    skills: ["React.js", "Next.js", "Tailwind CSS", "Redux", "Vite"],
   },
-  "Backend Development": {
-    icon: <Server />,
-    skills: ["Node.js", "NestJS", ".NET", "PostgreSQL", "MongoDB", "REST APIs"]
+  {
+    category: "Backend",
+    icon: <Server className="w-5 h-5" />,
+    skills: ["Node.js", "NestJS", ".NET", "PostgreSQL", "MongoDB"],
   },
-  "Soft Skills": {
-    icon: <Users />,
-    skills: ["Teamwork", "Agile/Scrum", "Problem Solving", "Communication", "Documentation"]
+  {
+    category: "Soft Skills",
+    icon: <Users className="w-5 h-5" />,
+    skills: ["Teamwork", "Agile/Scrum", "Problem Solving", "Documentation"],
   }
-};
+];
 
 export function Skills() {
   return (
-    <section className="py-24 px-4 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-indigo-950/20 transition-colors duration-500">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4 pb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">Skills</h2>
-          <div className="w-24 h-1.5 bg-gradient-to-r from-blue-600 to-indigo-600 mx-auto rounded-full"></div>
-        </div>
+    <section className="py-24 px-4 bg-[#020617] relative overflow-hidden">
+      {/* Background Decoration */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[1px] bg-gradient-to-r from-transparent via-blue-500/50 to-transparent opacity-20"></div>
+      
+      <div className="max-w-6xl mx-auto relative z-10">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-20"
+        >
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-mono mb-4">
+            <Zap className="w-3 h-3" />
+            <span>capabilities.list()</span>
+          </div>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">Technical <span className="text-blue-500">Skills</span></h2>
+          <div className="w-20 h-1 bg-blue-600 mx-auto rounded-full"></div>
+        </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {Object.entries(skillsData).map(([category, data], index) => (
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {skillsData.map((item, index) => (
             <SkillCard
-              key={category}
-              category={category}
-              icon={data.icon}
-              skills={data.skills}
+              key={item.category}
+              category={item.category}
+              icon={item.icon}
+              skills={item.skills}
               index={index}
             />
           ))}
@@ -53,23 +70,34 @@ function SkillCard({ category, icon, skills, index }: {
   key?: React.Key;
 }) {
   return (
-    <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 border border-white dark:border-gray-700 group">
-      <div className="flex flex-col items-center text-center">
-        <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center text-white mb-6 shadow-lg group-hover:rotate-6 transition-transform">
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: index * 0.1 }}
+      whileHover={{ y: -5 }}
+      className="group bg-slate-900/50 border border-slate-800 p-6 rounded-2xl hover:border-blue-500/50 transition-all duration-300 relative"
+    >
+      <div className="flex items-center gap-3 mb-6">
+        <div className="p-2.5 rounded-xl bg-slate-800 text-blue-400 group-hover:scale-110 transition-transform">
           {icon}
         </div>
-        <h3 className="text-2xl font-bold mb-6 text-gray-800 dark:text-gray-100">{category}</h3>
-        <div className="flex flex-wrap justify-center gap-2">
-          {skills.map((skill, skillIndex) => (
-            <span
-              key={skill}
-              className="px-4 py-1.5 bg-blue-50/50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-xl text-sm font-semibold border border-blue-100/50 dark:border-blue-800/50 hover:bg-blue-100 dark:hover:bg-blue-800/50 transition-colors"
-            >
-              {skill}
-            </span>
-          ))}
-        </div>
+        <h3 className="text-lg font-bold text-slate-200 group-hover:text-white transition-colors">{category}</h3>
       </div>
-    </div>
+      
+      <div className="space-y-3">
+        {skills.map((skill, idx) => (
+          <div key={idx} className="flex items-center gap-3 group/item">
+            <div className="w-1.5 h-1.5 rounded-full bg-slate-700 group-hover/item:bg-blue-500 transition-colors"></div>
+            <span className="text-sm text-slate-400 group-hover/item:text-slate-200 transition-colors font-mono">{skill}</span>
+          </div>
+        ))}
+      </div>
+
+      {/* Code-like corner decoration */}
+      <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
+        <Code2 className="w-4 h-4 text-slate-700" />
+      </div>
+    </motion.div>
   );
 }

@@ -10,15 +10,15 @@ import { Footer } from "./components/Footer";
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
+    <div className="min-h-screen bg-[#020617] text-slate-200 transition-colors duration-300">
       <Navbar />
       <main>
-        <section id="home"><Hero /></section>
-        <section id="education"><Education /></section>
-        <section id="skills"><Skills /></section>
-        <section id="experience"><Experience /></section>
-        <section id="projects"><Projects /></section>
-        <section id="contact"><Contact /></section>
+        <div id="home"><Hero /></div>
+        <div id="education"><Education /></div>
+        <div id="skills"><Skills /></div>
+        <div id="experience"><Experience /></div>
+        <div id="projects"><Projects /></div>
+        <div id="contact"><Contact /></div>
       </main>
       <Footer />
     </div>

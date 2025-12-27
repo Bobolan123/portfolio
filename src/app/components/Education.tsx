@@ -1,17 +1,18 @@
 import React from "react";
-import { GraduationCap } from "lucide-react";
+import { motion } from "motion/react";
+import { GraduationCap, Calendar, BookOpen } from "lucide-react";
 
 const educationData = [
   {
     degree: "BSc in Computing",
     school: "University of Greenwich",
     location: "Da Nang, Viet Nam",
-    year: "2022 - Now",
+    year: "2022 - Present",
     description: "Final-year student focusing on software development and computing systems. GPA: 3.7/4.0"
   },
   {
     degree: "Vstep Certificate",
-    school: "University of Foreign Language Studies",
+    school: "UFLS",
     location: "Da Nang, Viet Nam",
     year: "2023",
     description: "English proficiency certification with an overall score of 7.0."
@@ -20,9 +21,21 @@ const educationData = [
 
 export function Education() {
   return (
-    <section className="py-24 px-4 bg-white dark:bg-gray-950 transition-colors duration-500">
-      <div className="max-w-6xl mx-auto">
-        <SectionHeader title="Academic Background" icon={<GraduationCap className="w-10 h-10" />} />
+    <section className="py-24 px-4 bg-[#020617] relative">
+      <div className="max-w-6xl mx-auto relative z-10">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-20"
+        >
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-mono mb-4">
+            <BookOpen className="w-3 h-3" />
+            <span>academic.background()</span>
+          </div>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">Academic <span className="text-blue-500">Foundation</span></h2>
+          <div className="w-20 h-1 bg-blue-600 mx-auto rounded-full"></div>
+        </motion.div>
         
         <div className="grid md:grid-cols-2 gap-8">
           {educationData.map((edu, index) => (
@@ -34,20 +47,6 @@ export function Education() {
   );
 }
 
-function SectionHeader({ title, icon }: { title: string; icon: React.ReactNode }) {
-  return (
-    <div className="text-center mb-16">
-      <div className="flex flex-col items-center gap-4 mb-4">
-        <span className="text-blue-600 dark:text-blue-400">
-          {icon}
-        </span>
-        <h2 className="text-4xl font-bold pb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">{title}</h2>
-      </div>
-      <div className="w-24 h-1.5 bg-gradient-to-r from-blue-600 to-indigo-600 mx-auto rounded-full"></div>
-    </div>
-  );
-}
-
 function EducationCard({ degree, school, location, year, description, index }: {
   degree: string;
   school: string;
@@ -55,34 +54,38 @@ function EducationCard({ degree, school, location, year, description, index }: {
   year: string;
   description: string;
   index: number;
-  key?: React.Key;
 }) {
   return (
-    <div className="bg-gradient-to-br from-blue-50/50 to-indigo-50/50 dark:from-gray-900 dark:to-gray-800 p-10 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-blue-100/50 dark:border-gray-700 relative overflow-hidden group">
-      <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
-        <GraduationCap className="w-24 h-24" />
+    <motion.div
+      initial={{ opacity: 0, scale: 0.95 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{ delay: index * 0.1 }}
+      className="bg-slate-900/40 border border-slate-800 p-10 rounded-3xl hover:border-blue-500/30 transition-all group relative overflow-hidden"
+    >
+      <div className="absolute -right-4 -bottom-4 opacity-[0.03] group-hover:opacity-[0.05] transition-opacity">
+        <GraduationCap className="w-40 h-40" />
       </div>
 
-      <div className="flex flex-col h-full relative z-10">
-        <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-6">
-          <h3 className="text-2xl font-bold text-gray-800 dark:text-gray-100">{degree}</h3>
-          <span className="px-4 py-1.5 bg-blue-600 text-white rounded-full text-sm font-bold shadow-md">
+      <div className="relative z-10">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+          <h3 className="text-2xl font-bold text-white group-hover:text-blue-400 transition-colors">{degree}</h3>
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-800 border border-slate-700 text-slate-300 font-mono text-xs w-fit">
+            <Calendar className="w-3 h-3 text-blue-400" />
             {year}
-          </span>
+          </div>
         </div>
         
-        <div className="flex flex-wrap items-center gap-3 text-gray-600 dark:text-gray-400 mb-6 font-medium">
-          <span className="text-blue-600 dark:text-blue-400 font-bold">{school}</span>
-          <span>•</span>
-          <span className="flex items-center gap-1">
-            {location}
-          </span>
+        <div className="flex items-center gap-2 text-blue-500 font-mono text-sm mb-6">
+          <span>{school}</span>
+          <span className="text-slate-700">•</span>
+          <span className="text-slate-400">{location}</span>
         </div>
         
-        <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-lg">
+        <p className="text-slate-400 leading-relaxed">
           {description}
         </p>
       </div>
-    </div>
+    </motion.div>
   );
 }

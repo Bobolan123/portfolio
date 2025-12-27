@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
-import { Mail, Send, Phone, MapPin, CheckCircle2 } from "lucide-react";
+import { motion } from "motion/react";
+import { Mail, Send, Phone, MapPin, CheckCircle2, Terminal } from "lucide-react";
 import { Button } from "./ui/button";
 import emailjs from "@emailjs/browser";
 
@@ -39,28 +40,34 @@ export function Contact() {
   };
 
   return (
-    <section className="py-24 px-4 bg-gray-50 dark:bg-gray-900/50 transition-colors duration-500">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <div className="flex items-center justify-center gap-4 mb-4">
-            <span className="text-blue-600 dark:text-blue-400">
-              <Mail className="w-10 h-10" />
-            </span>
-            <h2 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">Get In Touch</h2>
+    <section className="py-24 px-4 bg-[#020617] relative">
+      <div className="max-w-6xl mx-auto relative z-10">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-20"
+        >
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-mono mb-4">
+            <Mail className="w-3 h-3" />
+            <span>contact.initiate()</span>
           </div>
-          <div className="w-24 h-1.5 bg-gradient-to-r from-blue-600 to-indigo-600 mx-auto rounded-full"></div>
-          <p className="mt-6 text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-lg">
-            Have a project in mind or just want to say hi? Feel free to reach out. I'm always open to new opportunities!
-          </p>
-        </div>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">Get In <span className="text-blue-500">Touch</span></h2>
+          <div className="w-20 h-1 bg-blue-600 mx-auto rounded-full"></div>
+        </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-stretch">
           {/* Contact Info */}
-          <div className="flex flex-col gap-8">
-            <div className="bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-xl border border-gray-100 dark:border-gray-700 flex-1 flex flex-col">
-              <h3 className="text-2xl font-bold mb-8 text-gray-800 dark:text-gray-100">Contact Information</h3>
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="flex flex-col gap-8"
+          >
+            <div className="bg-slate-900/40 border border-slate-800 p-10 rounded-3xl flex-1 flex flex-col">
+              <h3 className="text-2xl font-bold mb-8 text-white">Contact Information</h3>
               
-              <div className="space-y-6 flex-1 flex flex-col justify-center">
+              <div className="space-y-8 flex-1 flex flex-col justify-center">
                 <ContactDetail 
                   icon={<Mail className="w-6 h-6" />} 
                   title="Email" 
@@ -81,113 +88,126 @@ export function Contact() {
               </div>
             </div>
 
-            {/* Decorative Card */}
-            <div className="bg-gradient-to-br from-blue-600 to-indigo-600 p-8 rounded-3xl shadow-xl text-white relative overflow-hidden h-32 flex items-center">
-              <div className="relative z-10">
-                <h4 className="text-xl font-bold mb-1">Let's build something great!</h4>
-                <p className="text-blue-100 text-sm">I usually respond within 24 hours.</p>
+            {/* Decorative Terminal Card */}
+            <div className="bg-[#0f172a] border border-slate-800 p-6 rounded-2xl relative overflow-hidden group">
+              <div className="flex items-center gap-2 mb-4">
+                <div className="flex gap-1.5">
+                  <div className="w-2 h-2 rounded-full bg-slate-700"></div>
+                  <div className="w-2 h-2 rounded-full bg-slate-700"></div>
+                  <div className="w-2 h-2 rounded-full bg-slate-700"></div>
+                </div>
+                <span className="text-[10px] font-mono text-slate-600">terminal.log</span>
               </div>
-              <Mail className="absolute -right-4 -bottom-4 w-24 h-24 opacity-10 rotate-12" />
+              <p className="text-blue-400 font-mono text-sm leading-relaxed">
+                &gt; I'm currently seeking new opportunities. 
+                Feel free to reach out for collaborations or just a quick chat about tech!
+              </p>
             </div>
-          </div>
+          </motion.div>
 
           {/* Contact Form */}
-          <div className="flex">
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="flex"
+          >
             <form 
               ref={form}
               onSubmit={handleSubmit}
-              className="bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-xl border border-gray-100 dark:border-gray-700 space-y-6 w-full flex flex-col"
+              className="bg-slate-900/40 border border-slate-800 p-10 rounded-3xl space-y-6 w-full flex flex-col"
             >
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label className="text-sm font-bold text-gray-700 dark:text-gray-300 ml-1">Your Name</label>
+                  <label className="text-xs font-mono text-slate-500 uppercase tracking-widest ml-1">Name</label>
                   <input 
                     name="from_name"
                     required
                     type="text" 
                     placeholder="John Doe"
-                    className="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all dark:text-white"
+                    className="w-full px-4 py-3 rounded-xl bg-slate-950/50 border border-slate-800 focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/20 outline-none transition-all text-slate-200 font-mono text-sm"
                   />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-bold text-gray-700 dark:text-gray-300 ml-1">Email Address</label>
+                  <label className="text-xs font-mono text-slate-500 uppercase tracking-widest ml-1">Email</label>
                   <input 
                     name="from_email"
                     required
                     type="email" 
                     placeholder="john@example.com"
-                    className="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all dark:text-white"
+                    className="w-full px-4 py-3 rounded-xl bg-slate-950/50 border border-slate-800 focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/20 outline-none transition-all text-slate-200 font-mono text-sm"
                   />
                 </div>
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-bold text-gray-700 dark:text-gray-300 ml-1">Subject</label>
+                <label className="text-xs font-mono text-slate-500 uppercase tracking-widest ml-1">Subject</label>
                 <input 
                   name="subject"
                   required
                   type="text" 
                   placeholder="Inquiry about project"
-                  className="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all dark:text-white"
+                  className="w-full px-4 py-3 rounded-xl bg-slate-950/50 border border-slate-800 focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/20 outline-none transition-all text-slate-200 font-mono text-sm"
                 />
               </div>
 
               <div className="space-y-2 flex-1 flex flex-col">
-                <label className="text-sm font-bold text-gray-700 dark:text-gray-300 ml-1">Message</label>
+                <label className="text-xs font-mono text-slate-500 uppercase tracking-widest ml-1">Message</label>
                 <textarea 
                   name="message"
                   required
                   rows={5}
                   placeholder="How can I help you?"
-                  className="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all dark:text-white resize-none flex-1"
+                  className="w-full px-4 py-3 rounded-xl bg-slate-950/50 border border-slate-800 focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/20 outline-none transition-all text-slate-200 font-mono text-sm resize-none flex-1"
                 />
               </div>
 
               <Button
                 type="submit"
                 disabled={formState !== "idle"}
-                className={`w-full py-6 rounded-xl font-bold text-lg shadow-lg transition-all duration-300 ${
+                className={`w-full py-6 rounded-xl font-bold text-sm uppercase tracking-widest transition-all duration-300 ${
                   formState === "success" 
-                    ? "bg-green-500 hover:bg-green-600 text-white" 
-                    : "bg-blue-600 hover:bg-blue-700 text-white shadow-blue-600/20"
+                    ? "bg-green-600 hover:bg-green-700 text-white" 
+                    : "bg-blue-600 hover:bg-blue-500 text-white shadow-lg shadow-blue-600/20"
                 }`}
               >
                 {formState === "idle" && (
                   <span className="flex items-center gap-2">
-                    Send Message <Send className="w-5 h-5" />
+                    Send Message <Send className="w-4 h-4" />
                   </span>
                 )}
                 {formState === "submitting" && (
                   <span className="flex items-center gap-2">
-                    Sending... <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    Processing... <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                   </span>
                 )}
                 {formState === "success" && (
                   <span className="flex items-center gap-2">
-                    Message Sent! <CheckCircle2 className="w-5 h-5" />
+                    Sent Successfully <CheckCircle2 className="w-4 h-4" />
                   </span>
                 )}
               </Button>
             </form>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
   );
 }
+
 function ContactDetail({ icon, title, content, href }: { icon: React.ReactNode; title: string; content: string; href?: string }) {
   const Wrapper = href ? "a" : "div";
   return (
     <Wrapper 
       href={href}
-      className={`flex items-start gap-4 p-4 rounded-2xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group ${href ? 'cursor-pointer' : ''}`}
+      className={`flex items-start gap-5 group ${href ? 'cursor-pointer' : ''}`}
     >
-      <div className="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400 group-hover:scale-110 transition-transform">
+      <div className="w-12 h-12 rounded-xl bg-slate-800 flex items-center justify-center text-blue-400 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
         {icon}
       </div>
       <div>
-        <h4 className="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">{title}</h4>
-        <p className="text-lg font-semibold text-gray-800 dark:text-gray-100">{content}</p>
+        <h4 className="text-[10px] font-mono text-slate-500 uppercase tracking-widest mb-1">{title}</h4>
+        <p className="text-lg font-bold text-slate-200 group-hover:text-blue-400 transition-colors">{content}</p>
       </div>
     </Wrapper>
   );

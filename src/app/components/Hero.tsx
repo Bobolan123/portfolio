@@ -1,54 +1,158 @@
 import React from "react";
-import { Mail, Phone, MapPin, Github, Linkedin } from "lucide-react";
+import { motion } from "motion/react";
+import { Mail, Phone, MapPin, Github, Linkedin, Terminal as TerminalIcon, Code2 } from "lucide-react";
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-50 via-white to-indigo-100 dark:from-gray-950 dark:via-gray-900 dark:to-indigo-950 px-4 pt-32 pb-20 transition-colors duration-500">
-      {/* Background Elements */}
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#020617] text-slate-200 px-4 pt-32 pb-20 transition-colors duration-500">
+      {/* Coding Grid Background */}
+      <div className="absolute inset-0 z-0 opacity-20" 
+           style={{ backgroundImage: 'radial-gradient(#1e293b 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
+      
+      {/* Animated Glowing Orbs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div
-          className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-blue-400/10 dark:bg-blue-600/10 rounded-full blur-[100px]"
+        <motion.div
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.1, 0.3, 0.1],
+          }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-[10%] left-[10%] w-[400px] h-[400px] bg-blue-600/20 rounded-full blur-[120px]"
         />
-        <div
-          className="absolute -bottom-[10%] -right-[10%] w-[50%] h-[50%] bg-indigo-400/10 dark:bg-indigo-600/10 rounded-full blur-[100px]"
+        <motion.div
+          animate={{
+            scale: [1, 1.3, 1],
+            opacity: [0.1, 0.2, 0.1],
+          }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          className="absolute bottom-[10%] right-[10%] w-[500px] h-[500px] bg-indigo-600/20 rounded-full blur-[120px]"
         />
       </div>
 
-      <div className="max-w-4xl w-full relative z-10">
-        <div className="text-center">
-          <div className="w-40 h-40 mx-auto mb-8 rounded-full p-1 bg-gradient-to-r from-blue-600 to-indigo-600 shadow-2xl relative group"> 
-            <div className="w-full h-full rounded-full overflow-hidden bg-white dark:bg-gray-800 relative z-10">
-              <img 
-                src="/src/public/avatar.jpg" 
-                alt="Nguyen Hoang Lan" 
-                className="w-full h-full object-cover object-[center_15%] transition-transform duration-500 group-hover:scale-110"
-              />
+      <div className="max-w-5xl w-full relative z-10">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <motion.div 
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-left"
+          >
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-mono mb-6">
+              <TerminalIcon className="w-3 h-3" />
+              <span>system.status = "ready"</span>
             </div>
-          </div>
 
-          <h1 className="text-5xl md:text-7xl font-extrabold mb-6 pb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">
-            Nguyen Hoang Lan
-          </h1>
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight leading-tight">
+              <span className="text-white">Nguyen</span><br />
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-400">Hoang Lan</span>
+            </h1>
 
-          <p className="text-2xl md:text-3xl font-medium text-gray-700 dark:text-gray-300 mb-8">
-             Software Engineer
-          </p>
+            <div className="flex items-center gap-3 mb-8">
+              <div className="h-[1px] w-12 bg-blue-500/50"></div>
+              <p className="text-xl md:text-2xl font-mono text-blue-400">
+                &lt;SoftwareEngineer /&gt;
+              </p>
+            </div>
 
-          <p className="text-lg text-gray-600 dark:text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
-            Final-year Computing student at the University of Greenwich with a solid foundation in building scalable web applications. 
-            Eager to apply practical experience and end-to-end development skills to contribute to innovative projects.
-          </p>
+            <p className="text-lg text-slate-400 mb-10 max-w-xl leading-relaxed">
+              Final-year Computing student at the University of Greenwich. 
+              Focused on building robust, scalable architectures and crafting clean, maintainable code.
+            </p>
 
-          <div className="flex flex-wrap justify-center gap-6 mb-10">
-            <ContactItem icon={<Mail className="w-5 h-5" />} text="logannguyenlan@gmail.com" />
-            <ContactItem icon={<Phone className="w-5 h-5" />} text="+84 778 900 551" />
-            <ContactItem icon={<MapPin className="w-5 h-5" />} text="Da Nang, Viet Nam" />
-          </div>
+            <div className="flex flex-wrap gap-4 mb-10">
+              <ContactItem icon={<Mail className="w-4 h-4" />} text="logannguyenlan@gmail.com" />
+              <ContactItem icon={<MapPin className="w-4 h-4" />} text="Da Nang, VN" />
+            </div>
 
-          <div className="flex justify-center gap-6">
-            <SocialLink icon={<Github className="w-6 h-6" />} href="https://github.com/Bobolan123" label="GitHub" />
-            <SocialLink icon={<Linkedin className="w-6 h-6" />} href="https://linkedin.com/in/lannguyen124" label="LinkedIn" />
-          </div>
+            <div className="flex items-center gap-6">
+              <SocialLink icon={<Github className="w-6 h-6" />} href="https://github.com/Bobolan123" />
+              <SocialLink icon={<Linkedin className="w-6 h-6" />} href="https://linkedin.com/in/lannguyen124" />
+              <div className="h-10 w-[1px] bg-slate-800 mx-2"></div>
+              <motion.button 
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-6 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-lg font-bold transition-colors shadow-lg shadow-blue-600/20"
+              >
+                View Resume
+              </motion.button>
+            </div>
+          </motion.div>
+
+          {/* Coding Terminal Card */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="hidden lg:block relative"
+          >
+            <div className="absolute inset-0 bg-gradient-to-tr from-blue-600/20 to-indigo-600/20 rounded-2xl blur-3xl transform -rotate-6"></div>
+            <div className="bg-[#0f172a] border border-slate-800 rounded-xl overflow-hidden shadow-2xl relative">
+              <div className="flex items-center gap-2 px-4 py-3 bg-[#1e293b]/50 border-b border-slate-800">
+                <div className="flex gap-1.5">
+                  <div className="w-3 h-3 rounded-full bg-red-500/50"></div>
+                  <div className="w-3 h-3 rounded-full bg-yellow-500/50"></div>
+                  <div className="w-3 h-3 rounded-full bg-green-500/50"></div>
+                </div>
+                <div className="ml-4 text-xs font-mono text-slate-500">DeveloperPortfolio.tsx</div>
+              </div>
+              <div className="p-6 font-mono text-sm leading-relaxed overflow-hidden">
+                <div className="flex gap-4">
+                  <span className="text-slate-600 select-none">01</span>
+                  <p><span className="text-pink-500">const</span> <span className="text-blue-400">developer</span> = &#123;</p>
+                </div>
+                <div className="flex gap-4">
+                  <span className="text-slate-600 select-none">02</span>
+                  <p className="ml-4"><span className="text-slate-400">name:</span> <span className="text-green-400">"Nguyen Hoang Lan"</span>,</p>
+                </div>
+                <div className="flex gap-4">
+                  <span className="text-slate-600 select-none">03</span>
+                  <p className="ml-4"><span className="text-slate-400">role:</span> <span className="text-green-400">"Software Engineer"</span>,</p>
+                </div>
+                <div className="flex gap-4">
+                  <span className="text-slate-600 select-none">04</span>
+                  <p className="ml-4"><span className="text-slate-400">skills:</span> [</p>
+                </div>
+                <div className="flex gap-4">
+                  <span className="text-slate-600 select-none">05</span>
+                  <p className="ml-8"><span className="text-green-400">"React"</span>, <span className="text-green-400">"Next.js"</span>, <span className="text-green-400">"TypeScript"</span>,</p>
+                </div>
+                <div className="flex gap-4">
+                  <span className="text-slate-600 select-none">06</span>
+                  <p className="ml-8"><span className="text-green-400">"Node.js"</span>, <span className="text-green-400">".NET"</span>, <span className="text-green-400">"PostgreSQL"</span></p>
+                </div>
+                <div className="flex gap-4">
+                  <span className="text-slate-600 select-none">07</span>
+                  <p className="ml-4">],</p>
+                </div>
+                <div className="flex gap-4">
+                  <span className="text-slate-600 select-none">08</span>
+                  <p className="ml-4"><span className="text-slate-400">status:</span> <span className="text-green-400">"Ready for impact"</span>,</p>
+                </div>
+                <div className="flex gap-4">
+                  <span className="text-slate-600 select-none">09</span>
+                  <p className="ml-4"><span className="text-slate-400">quote:</span> <span className="text-green-400">"Talk is cheap. Show me the code."</span></p>
+                </div>
+                <div className="flex gap-4">
+                  <span className="text-slate-600 select-none">10</span>
+                  <p>&#125;;</p>
+                </div>
+                <motion.div 
+                  animate={{ opacity: [1, 0] }}
+                  transition={{ duration: 0.8, repeat: Infinity }}
+                  className="w-2 h-5 bg-blue-500 ml-4 inline-block mt-2" 
+                />
+              </div>
+            </div>
+            
+            {/* Floating Icons */}
+            <motion.div 
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute -top-6 -right-6 p-4 bg-[#1e293b] border border-slate-700 rounded-2xl shadow-xl"
+            >
+              <Code2 className="w-8 h-8 text-blue-400" />
+            </motion.div>
+          </motion.div>
         </div>
       </div>
     </section>
@@ -57,23 +161,23 @@ export function Hero() {
 
 function ContactItem({ icon, text }: { icon: React.ReactNode; text: string }) {
   return (
-    <div className="flex items-center gap-3 text-gray-700 dark:text-gray-300 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm px-4 py-2 rounded-full border border-gray-200 dark:border-gray-700 hover:border-blue-400 dark:hover:border-blue-500 transition-all duration-300 group">
-      <span className="text-blue-600 dark:text-blue-400 group-hover:scale-110 transition-transform">{icon}</span>
-      <span className="font-medium">{text}</span>
+    <div className="flex items-center gap-2 text-slate-400 text-sm font-mono bg-slate-900/50 px-3 py-1.5 rounded-lg border border-slate-800">
+      <span className="text-blue-400">{icon}</span>
+      <span>{text}</span>
     </div>
   );
 }
 
-function SocialLink({ icon, href, label }: { icon: React.ReactNode; href: string; label: string }) {
+function SocialLink({ icon, href }: { icon: React.ReactNode; href: string }) {
   return (
-    <a
+    <motion.a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label={label}
-      className="w-14 h-14 rounded-2xl bg-white dark:bg-gray-800 shadow-lg flex items-center justify-center text-gray-700 dark:text-gray-300 hover:bg-blue-600 dark:hover:bg-blue-500 hover:text-white dark:hover:text-white transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700"
+      whileHover={{ y: -3, color: "#60a5fa" }}
+      className="text-slate-500 transition-colors"
     >
       {icon}
-    </a>
+    </motion.a>
   );
 }

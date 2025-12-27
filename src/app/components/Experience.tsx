@@ -1,58 +1,66 @@
 import React from "react";
-import { Briefcase } from "lucide-react";
+import { motion } from "motion/react";
+import { Briefcase, Calendar, MapPin, Terminal } from "lucide-react";
 
 const experienceData = [
   {
     title: "Fullstack Developer Internship",
     company: "St Software",
     location: "Da Nang, Viet Nam",
-    period: "Sep 2024 - Nov 2024",
+    period: "2024.09 - 2024.11",
     responsibilities: [
-      "Optimized React (Vite) with Tailwind CSS for SHB FOOTBALL CLUB homepage to improve ticket selection UX",
-      "Developed a secure VAT tax API with accurate dynamic calculations for financial transactions",
-      "Architected and implemented reusable UI components in React.js to ensure consistency and maintainability",
-      "Implemented a PostgreSQL soft-delete system to manage data effectively without permanent loss",
-      "Collaborated efficiently within Agile/Scrum teams to deliver features on schedule"
+      "Optimized React (Vite) with Tailwind CSS for SHB FOOTBALL CLUB homepage",
+      "Developed a secure VAT tax API with dynamic calculations",
+      "Architected and implemented reusable UI components in React.js",
+      "Implemented a PostgreSQL soft-delete system",
+      "Collaborated efficiently within Agile/Scrum teams"
     ]
   },
   {
     title: "Final Year Project - Full Stack Developer",
     company: "University of Greenwich",
     location: "Da Nang, Viet Nam",
-    period: "Apr 2025 - Nov 2025",
+    period: "2025.04 - 2025.11",
     responsibilities: [
-      "Developed a comprehensive E-Learning Platform using React.js, Next.js, and NestJS with RBAC",
-      "Integrated a RAG AI Chatbot using Gemini and Qdrant to automate student support responses",
-      "Engineered advanced course filtering with Elasticsearch, significantly reducing search time",
-      "Implemented secure VNPAY payment gateway and real-time chat functionality with Socket.IO",
-      "Optimized hybrid storage using PostgreSQL and MongoDB to handle concurrent user interactions"
+      "Developed a comprehensive E-Learning Platform using Next.js and NestJS",
+      "Integrated a RAG AI Chatbot using Gemini and Qdrant",
+      "Engineered advanced course filtering with Elasticsearch",
+      "Implemented secure VNPAY payment gateway and real-time chat",
+      "Optimized hybrid storage using PostgreSQL and MongoDB"
     ]
   }
 ];
 
 export function Experience() {
   return (
-    <section className="py-24 px-4 bg-gray-50 dark:bg-gray-900 transition-colors duration-500">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <div className="flex items-center justify-center gap-4 mb-4">
-            <span className="text-blue-600 dark:text-blue-400">
-              <Briefcase className="w-10 h-10" />
-            </span>
-            <h2 className="text-4xl font-bold pb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">Professional Journey</h2>
+    <section className="py-24 px-4 bg-[#020617] relative">
+      <div className="max-w-4xl mx-auto">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-20 text-center"
+        >
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-mono mb-4">
+            <Terminal className="w-3 h-3" />
+            <span>career.history()</span>
           </div>
-          <div className="w-24 h-1.5 bg-gradient-to-r from-blue-600 to-indigo-600 mx-auto rounded-full"></div>
-        </div>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">Professional <span className="text-blue-500">Journey</span></h2>
+          <div className="w-20 h-1 bg-blue-600 mx-auto rounded-full"></div>
+        </motion.div>
 
-        <div className="relative">
-          {/* Central Timeline Line */}
-          <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-600 via-indigo-600 to-blue-600 dark:from-blue-500 dark:via-indigo-500 dark:to-blue-500 transform md:-translate-x-1/2 rounded-full opacity-30"></div>
-          
-          <div className="space-y-16">
-            {experienceData.map((exp, index) => (
-              <ExperienceCard key={index} {...exp} index={index} />
-            ))}
-          </div>
+        <div className="space-y-12">
+          {experienceData.map((exp, index) => (
+            <ExperienceCard 
+              key={index}
+              title={exp.title}
+              company={exp.company}
+              location={exp.location}
+              period={exp.period}
+              responsibilities={exp.responsibilities}
+              index={index} 
+            />
+          ))}
         </div>
       </div>
     </section>
@@ -68,43 +76,42 @@ function ExperienceCard({ title, company, location, period, responsibilities, in
   index: number;
   key?: React.Key;
 }) {
-  const isEven = index % 2 === 0;
-
   return (
-    <div className={`relative flex flex-col md:flex-row ${isEven ? 'md:flex-row-reverse' : ''} items-center`}>
-      {/* Timeline Dot */}
-      <div className="absolute left-0 md:left-1/2 top-0 md:top-8 w-6 h-6 rounded-full bg-white dark:bg-gray-800 border-4 border-blue-600 dark:border-blue-400 transform md:-translate-x-1/2 z-10 shadow-lg shadow-blue-600/20"></div>
+    <motion.div
+      initial={{ opacity: 0, x: -20 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: index * 0.1 }}
+      className="relative pl-8 before:absolute before:left-0 before:top-0 before:bottom-0 before:w-[1px] before:bg-slate-800"
+    >
+      {/* Timeline Node */}
+      <div className="absolute left-[-5px] top-2 w-[11px] h-[11px] rounded-full bg-blue-600 border-4 border-[#020617] shadow-[0_0_10px_rgba(37,99,235,0.5)]"></div>
       
-      <div className={`w-full md:w-1/2 ${isEven ? 'md:pl-12' : 'md:pr-12'} ml-10 md:ml-0`}>
-        <div className="bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-100 dark:border-gray-700 relative overflow-hidden group">
-          <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-            <Briefcase className="w-12 h-12" />
-          </div>
-
-          <div className="mb-6">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 text-sm font-bold mb-4 border border-blue-100 dark:border-blue-800/50">
-              {period}
-            </span>
-            <h3 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-2">{title}</h3>
-            <div className="flex flex-wrap items-center gap-2 text-gray-600 dark:text-gray-400 font-medium">
-              <span className="text-blue-600 dark:text-blue-400">{company}</span>
-              <span>•</span>
-              <span>{location}</span>
+      <div className="bg-slate-900/40 border border-slate-800 p-8 rounded-2xl hover:border-blue-500/30 transition-colors group">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+          <div>
+            <h3 className="text-2xl font-bold text-white group-hover:text-blue-400 transition-colors">{title}</h3>
+            <div className="flex items-center gap-2 text-blue-500 font-mono text-sm mt-1">
+              <span>{company}</span>
+              <span className="text-slate-700">•</span>
+              <span className="text-slate-400">{location}</span>
             </div>
           </div>
-          
-          <ul className="space-y-3">
-            {responsibilities.map((resp, idx) => (
-              <li
-                key={idx}
-                className="text-gray-700 dark:text-gray-300 pl-6 relative before:content-[''] before:absolute before:left-0 before:top-2.5 before:w-2 before:h-2 before:bg-blue-600 dark:before:bg-blue-400 before:rounded-full leading-relaxed"
-              >
-                {resp}
-              </li>
-            ))}
-          </ul>
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-800/50 border border-slate-700 text-slate-300 font-mono text-xs h-fit">
+            <Calendar className="w-3 h-3 text-blue-400" />
+            {period}
+          </div>
         </div>
+
+        <ul className="space-y-3">
+          {responsibilities.map((resp, idx) => (
+            <li key={idx} className="flex items-start gap-3 text-slate-400 leading-relaxed text-sm">
+              <span className="text-blue-600 mt-1.5 font-mono text-xs">➔</span>
+              {resp}
+            </li>
+          ))}
+        </ul>
       </div>
-    </div>
+    </motion.div>
   );
 }
