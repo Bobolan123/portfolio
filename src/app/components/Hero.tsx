@@ -23,13 +23,13 @@ export function Hero() {
       />
 
       {/* Coding Grid Background */}
-      <div className="absolute inset-0 z-0 opacity-[0.03] dark:opacity-20" 
-           style={{ backgroundImage: 'radial-gradient(var(--foreground) 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
+      <div className="absolute inset-0 z-0 opacity-5 dark:opacity-20" 
+           style={{ backgroundImage: 'radial-gradient(var(--border) 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
       
       {/* Animated Glowing Orbs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-[10%] left-[10%] w-[400px] h-[400px] bg-blue-600/[0.05] dark:bg-blue-600/20 rounded-full blur-[120px]" />
-        <div className="absolute bottom-[10%] right-[10%] w-[500px] h-[500px] bg-indigo-600/[0.05] dark:bg-indigo-600/20 rounded-full blur-[120px]" />
+        <div className="absolute top-[10%] left-[10%] w-[400px] h-[400px] bg-blue-600/10 dark:bg-blue-600/20 rounded-full blur-[120px]" />
+        <div className="absolute bottom-[10%] right-[10%] w-[500px] h-[500px] bg-indigo-600/10 dark:bg-indigo-600/20 rounded-full blur-[120px]" />
       </div>
 
       <div className="max-w-5xl w-full relative z-10">
@@ -53,8 +53,7 @@ export function Hero() {
             </div>
 
             <p className="text-lg text-muted-foreground mb-10 max-w-xl leading-relaxed">
-              Software Engineer focused on building robust, scalable architectures and crafting clean, maintainable code. 
-              Dedicated to solving complex problems and delivering high-quality digital experiences.
+              Dedicated to solving problems and delivering high-quality digital experiences.
             </p>
 
             <div className="flex flex-wrap gap-4 mb-10">
@@ -67,7 +66,7 @@ export function Hero() {
               <SocialLink icon={<Linkedin className="w-6 h-6" />} href="https://linkedin.com/in/lannguyen124" />
               <div className="h-10 w-[1px] bg-border mx-2"></div>
               <a 
-                href="/Core%20Resume.pdf"
+                href="/src/public/Core Resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group relative inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-600 dark:to-indigo-600 text-white rounded-xl font-bold transition-all shadow-lg overflow-hidden hover:scale-105 active:scale-95"

@@ -36,7 +36,7 @@ export function Skills() {
             <Zap className="w-3 h-3" />
             <span>capabilities.list()</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4 tracking-tight">Technical <span className="text-blue-600 dark:text-blue-500">Skills</span></h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4 tracking-tight">Relevant  <span className="text-blue-600 dark:text-blue-500">Capabilities</span></h2>
           <div className="w-20 h-1 bg-blue-600 mx-auto rounded-full"></div>
         </div>
 
