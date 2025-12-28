@@ -1,21 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { Moon, Sun, Home, GraduationCap, Code2, Briefcase, FolderGit2, Mail } from "lucide-react";
+import { Moon, Sun, Home, GraduationCap, Code2, Briefcase, FolderGit2, Mail, Globe } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "./ui/button";
+import { useLanguage } from "../context/useLanguage";
 
 export function Navbar() {
   const { theme, setTheme } = useTheme();
+  const { language, setLanguage, t } = useLanguage();
   const [mounted, setMounted] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [isScrolled, setIsScrolled] = useState(false);
 
   const navLinks = [
-    { name: "Home", href: "#home", icon: <Home className="w-5 h-5" /> },
-    { name: "Education", href: "#education", icon: <GraduationCap className="w-5 h-5" /> },
-    { name: "Skills", href: "#skills", icon: <Code2 className="w-5 h-5" /> },
-    { name: "Experience", href: "#experience", icon: <Briefcase className="w-5 h-5" /> },
-    { name: "Projects", href: "#projects", icon: <FolderGit2 className="w-5 h-5" /> },
-    { name: "Contact", href: "#contact", icon: <Mail className="w-5 h-5" /> },
+    { name: t.nav.home, id: "home", href: "#home", icon: <Home className="w-5 h-5" /> },
+    { name: t.nav.education, id: "education", href: "#education", icon: <GraduationCap className="w-5 h-5" /> },
+    { name: t.nav.skills, id: "skills", href: "#skills", icon: <Code2 className="w-5 h-5" /> },
+    { name: t.nav.experience, id: "experience", href: "#experience", icon: <Briefcase className="w-5 h-5" /> },
+    { name: t.nav.projects, id: "projects", href: "#projects", icon: <FolderGit2 className="w-5 h-5" /> },
+    { name: t.nav.contact, id: "contact", href: "#contact", icon: <Mail className="w-5 h-5" /> },
   ];
 
   useEffect(() => {
@@ -23,8 +25,7 @@ export function Navbar() {
     
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
-      const sections = navLinks
-        .map(link => link.href.substring(1));
+      const sections = navLinks.map(link => link.id);
       const scrollPosition = window.scrollY + window.innerHeight / 3;
 
       for (const section of sections) {
@@ -41,7 +42,7 @@ export function Navbar() {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [t]);
 
   if (!mounted) return null;
 
@@ -53,11 +54,11 @@ export function Navbar() {
         <div className="absolute left-1/2 top-0 bottom-0 w-[1px] bg-border dark:bg-slate-800/50 -translate-x-1/2 z-0" />
 
         <div className="flex flex-col items-center gap-8 pointer-events-auto">
-          {navLinks.map((link, index) => {
-            const isActive = activeSection === link.href.substring(1);
+          {navLinks.map((link) => {
+            const isActive = activeSection === link.id;
             return (
               <div 
-                key={link.name} 
+                key={link.id} 
                 className="relative group flex items-center"
               >
                 <a
@@ -100,6 +101,16 @@ export function Navbar() {
             <span className="text-blue-600 dark:text-blue-500">NH</span>L.
           </div>
           <div className="flex items-center gap-4">
+            {/* Language Switcher Mobile */}
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setLanguage(language === "en" ? "vi" : "en")}
+              className="w-10 h-10 rounded-xl bg-muted dark:bg-slate-900 border border-border dark:border-slate-800 text-xs font-bold"
+            >
+              {language.toUpperCase()}
+            </Button>
+
             <Button
               variant="ghost"
               size="icon"
@@ -116,10 +127,10 @@ export function Navbar() {
             <div className="flex bg-muted/50 dark:bg-slate-900/50 backdrop-blur-md p-1 rounded-xl border border-border dark:border-slate-800">
               {navLinks.slice(0, 4).map((link) => (
                 <a
-                  key={link.name}
+                  key={link.id}
                   href={link.href}
                   className={`w-9 h-9 flex items-center justify-center rounded-lg transition-all ${
-                    activeSection === link.href.substring(1)
+                    activeSection === link.id
                       ? "bg-blue-600 text-white shadow-lg"
                       : "text-muted-foreground"
                   }`}
@@ -132,8 +143,22 @@ export function Navbar() {
         </div>
       </nav>
 
-      {/* Theme Toggle Desktop */}
-      <div className="fixed right-8 bottom-8 z-50 hidden lg:block">
+      {/* Toggles Desktop */}
+      <div className="fixed right-8 bottom-8 z-50 hidden lg:flex flex-col gap-4">
+        {/* Language Switcher Desktop */}
+        <div className="hover:scale-110 active:scale-95 transition-transform">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setLanguage(language === "en" ? "vi" : "en")}
+            className="w-14 h-14 rounded-2xl bg-card/80 dark:bg-slate-900/80 backdrop-blur-lg border border-border dark:border-slate-800 hover:border-blue-500/50 shadow-2xl group transition-all text-sm font-bold flex flex-col items-center justify-center gap-1"
+          >
+            <Globe className="w-5 h-5 text-blue-600 dark:text-blue-500" />
+            <span className="text-[10px]">{language.toUpperCase()}</span>
+          </Button>
+        </div>
+
+        {/* Theme Toggle Desktop */}
         <div className="hover:scale-110 active:scale-95 transition-transform">
           <Button
             variant="ghost"

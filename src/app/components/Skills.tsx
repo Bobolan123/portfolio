@@ -1,51 +1,43 @@
 import React from "react";
-import { Terminal, Layout, Server, Users, Code2, Zap } from "lucide-react";
-
-const skillsData = [
-  {
-    category: "Languages",
-    icon: <Terminal className="w-5 h-5" />,
-    skills: ["JavaScript", "TypeScript", "C#", "Python", "SQL"],
-  },
-  {
-    category: "Frontend",
-    icon: <Layout className="w-5 h-5" />,
-    skills: ["React.js", "Next.js", "Ant Design", "Tailwind CSS", "Redux"],
-  },
-  {
-    category: "Backend",
-    icon: <Server className="w-5 h-5" />,
-    skills: ["Node.js", "NestJS", ".NET Core", "PostgreSQL", "MongoDB"],
-  },
-  {
-    category: "Soft Skills",
-    icon: <Users className="w-5 h-5" />,
-    skills: ["CRM", "Agile/Scrum", "Customer Service", "Lesson Planning"],
-  }
-];
+import { Terminal, Layout, Server, Users, Code2, Zap, Globe, Wrench } from "lucide-react";
+import { useLanguage } from "../context/useLanguage";
 
 export function Skills() {
+  const { t } = useLanguage();
+
+  const getIcon = (category: string) => {
+    switch (category) {
+      case "programming": return <Terminal className="w-5 h-5" />;
+      case "frontend": return <Layout className="w-5 h-5" />;
+      case "backend": return <Server className="w-5 h-5" />;
+      case "tools": return <Wrench className="w-5 h-5" />;
+      case "softSkills": return <Users className="w-5 h-5" />;
+      case "languages": return <Globe className="w-5 h-5" />;
+      default: return <Code2 className="w-5 h-5" />;
+    }
+  };
+
   return (
     <section className="py-24 px-4 bg-background relative overflow-hidden transition-colors duration-500">
       {/* Background Decoration */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[1px] bg-gradient-to-r from-transparent via-blue-500/50 to-transparent opacity-20 dark:opacity-20 opacity-10"></div>
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[1px] bg-gradient-to-r from-transparent via-blue-500/50 to-transparent opacity-10 dark:opacity-20"></div>
       
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="text-center mb-20">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-600 dark:text-blue-400 text-xs font-mono mb-4">
             <Zap className="w-3 h-3" />
-            <span>capabilities.list()</span>
+            <span>{t.skills.badge}</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4 tracking-tight">Relevant  <span className="text-blue-600 dark:text-blue-500">Capabilities</span></h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4 tracking-tight">{t.skills.titlePrefix}  <span className="text-blue-600 dark:text-blue-500">{t.skills.titleSuffix}</span></h2>
           <div className="w-20 h-1 bg-blue-600 mx-auto rounded-full"></div>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {skillsData.map((item, index) => (
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          {t.skills.data.map((item: any, index: number) => (
             <SkillCard
               key={item.category}
-              category={item.category}
-              icon={item.icon}
+              category={(t.skills.categories as any)[item.category]}
+              icon={getIcon(item.category)}
               skills={item.skills}
               index={index}
             />

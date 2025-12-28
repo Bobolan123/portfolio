@@ -1,8 +1,10 @@
 import React from "react";
 import { Github, Linkedin, Mail } from "lucide-react";
+import { useLanguage } from "../context/useLanguage";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
+  const { t } = useLanguage();
 
   return (
     <footer className="py-12 px-4 bg-background border-t border-border transition-colors duration-500">
@@ -12,7 +14,7 @@ export function Footer() {
             Nguyen Hoang Lan
           </h2>
           <p className="text-muted-foreground font-mono text-sm">
-            &lt;SoftwareEngineer /&gt;
+            {t.hero.role}
           </p>
         </div>
 
@@ -24,7 +26,7 @@ export function Footer() {
 
         <div className="flex flex-col items-center gap-2 text-muted-foreground text-sm font-mono">
           <p>© {currentYear} - Nguyen Hoang Lan</p>
-          <p className="italic opacity-70">"Talk is cheap. Show me the code."</p>
+          <p className="italic opacity-70">"{t.footer.quote}"</p>
         </div>
       </div>
     </footer>

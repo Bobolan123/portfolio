@@ -1,38 +1,24 @@
 import React from "react";
 import { GraduationCap, Calendar, BookOpen } from "lucide-react";
+import { useLanguage } from "../context/useLanguage";
 
-const educationData = [
-  {
-    degree: "BSc in Computing",
-    school: "University of Greenwich",
-    location: "Da Nang, Viet Nam",
-    year: "2022 - 2026",
-    description: "Focusing on software development and computing systems. GPA: 3.7/4.0"
-  },
-  {
-    degree: "Vstep Certificate",
-    school: "UFLS",
-    location: "Da Nang, Viet Nam",
-    year: "2023",
-    description: "English proficiency certification with an overall score of 7.0."
-  }
-];
 
 export function Education() {
+  const { t } = useLanguage();
   return (
     <section className="py-24 px-4 bg-background relative transition-colors duration-500">
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="text-center mb-20">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-muted dark:bg-slate-900 border border-border dark:border-slate-800 text-blue-600 dark:text-blue-400 text-xs font-mono mb-4 shadow-sm">
             <BookOpen className="w-3 h-3" />
-            <span>academic.background()</span>
+            <span>{t.education.badge}</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4 tracking-tight">Academic <span className="text-blue-600 dark:text-blue-500">Foundation</span></h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4 tracking-tight">{t.education.titlePrefix} <span className="text-blue-600 dark:text-blue-500">{t.education.titleSuffix}</span></h2>
           <div className="w-20 h-1 bg-blue-600 mx-auto rounded-full"></div>
         </div>
         
         <div className="grid md:grid-cols-2 gap-8">
-          {educationData.map((edu, index) => (
+          {t.education.data.map((edu: any, index: number) => (
             <EducationCard key={index} {...edu} index={index} />
           ))}
         </div>

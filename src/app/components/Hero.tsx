@@ -1,7 +1,9 @@
 import React from "react";
 import { Mail, Phone, MapPin, Github, Linkedin, Terminal as TerminalIcon, Code2, FileText, ArrowRight } from "lucide-react";
+import { useLanguage } from "../context/useLanguage";
 
 export function Hero() {
+  const { t } = useLanguage();
   const [mousePos, setMousePos] = React.useState({ x: 0, y: 0 });
 
   React.useEffect(() => {
@@ -34,52 +36,52 @@ export function Hero() {
 
       <div className="max-w-5xl w-full relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div className="text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-600 dark:text-blue-400 text-xs font-mono mb-6">
-              <TerminalIcon className="w-3 h-3" />
-              <span>system.status = "ready"</span>
-            </div>
+            <div className="text-left">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-600 dark:text-blue-400 text-xs font-mono mb-6">
+                <TerminalIcon className="w-3 h-3" />
+                <span>{t.hero.status}</span>
+              </div>
 
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight leading-tight">
-              <span className="text-foreground">Nguyen</span><br />
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">Hoang Lan</span>
-            </h1>
+              <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight leading-tight">
+                <span className="text-foreground">Nguyen</span><br />
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">Hoang Lan</span>
+              </h1>
 
-            <div className="flex items-center gap-3 mb-8 origin-left">
-              <div className="h-[1px] w-12 bg-blue-500/50"></div>
-              <p className="text-xl md:text-2xl font-mono text-blue-600 dark:text-blue-400">
-                &lt;SoftwareEngineer /&gt;
+              <div className="flex items-center gap-3 mb-8 origin-left">
+                <div className="h-[1px] w-12 bg-blue-500/50"></div>
+                <p className="text-xl md:text-2xl font-mono text-blue-600 dark:text-blue-400">
+                  {t.hero.role}
+                </p>
+              </div>
+
+              <p className="text-lg text-muted-foreground mb-10 max-w-xl leading-relaxed">
+              {t.hero.bio}
               </p>
-            </div>
 
-            <p className="text-lg text-muted-foreground mb-10 max-w-xl leading-relaxed">
-              Dedicated to solving problems and delivering high-quality digital experiences.
-            </p>
+              <div className="flex flex-wrap gap-4 mb-10">
+                <ContactItem icon={<Mail className="w-4 h-4" />} text="logannguyenlan@gmail.com" />
+                <ContactItem icon={<MapPin className="w-4 h-4" />} text={t.hero.location} />
+              </div>
 
-            <div className="flex flex-wrap gap-4 mb-10">
-              <ContactItem icon={<Mail className="w-4 h-4" />} text="logannguyenlan@gmail.com" />
-              <ContactItem icon={<MapPin className="w-4 h-4" />} text="Da Nang, VN" />
+              <div className="flex items-center gap-6">
+                <SocialLink icon={<Github className="w-6 h-6" />} href="https://github.com/Bobolan123" />
+                <SocialLink icon={<Linkedin className="w-6 h-6" />} href="https://linkedin.com/in/lannguyen124" />
+                <div className="h-10 w-[1px] bg-border mx-2"></div>
+                <a 
+                  href="/Core%20Resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-600 dark:to-indigo-600 text-white rounded-xl font-bold transition-all shadow-lg overflow-hidden hover:scale-105 active:scale-95"
+                >
+                  {/* Shine effect */}
+                  <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
+                  
+                  <FileText className="w-5 h-5 group-hover:rotate-12 transition-transform" />
+                  <span>{t.hero.viewResume}</span>
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </a>
+              </div>
             </div>
-
-            <div className="flex items-center gap-6">
-              <SocialLink icon={<Github className="w-6 h-6" />} href="https://github.com/Bobolan123" />
-              <SocialLink icon={<Linkedin className="w-6 h-6" />} href="https://linkedin.com/in/lannguyen124" />
-              <div className="h-10 w-[1px] bg-border mx-2"></div>
-              <a 
-                href="/src/public/Core Resume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-600 dark:to-indigo-600 text-white rounded-xl font-bold transition-all shadow-lg overflow-hidden hover:scale-105 active:scale-95"
-              >
-                {/* Shine effect */}
-                <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
-                
-                <FileText className="w-5 h-5 group-hover:rotate-12 transition-transform" />
-                <span>View Resume</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </a>
-            </div>
-          </div>
 
           <div className="hidden lg:block relative">
             <div className="absolute inset-0 bg-gradient-to-tr from-blue-600/20 to-indigo-600/20 rounded-2xl blur-3xl transform -rotate-6"></div>
@@ -103,7 +105,7 @@ export function Hero() {
                 </div>
                 <div className="flex gap-4">
                   <span className="text-slate-600 select-none">03</span>
-                  <p className="ml-4"><span className="text-slate-400">role:</span> <span className="text-green-400">"Software Engineer"</span>,</p>
+                  <p className="ml-4"><span className="text-slate-400">role:</span> <span className="text-green-400">"{t.hero.rolePlain}"</span>,</p>
                 </div>
                 <div className="flex gap-4">
                   <span className="text-slate-600 select-none">04</span>
@@ -135,7 +137,7 @@ export function Hero() {
                 </div>
                 <div className="flex gap-4">
                   <span className="text-slate-600 select-none">08</span>
-                  <p className="ml-4"><span className="text-slate-400">status:</span> <span className="text-green-400">"Ready for impact"</span></p>
+                  <p className="ml-4"><span className="text-slate-400">status:</span> <span className="text-green-400">"{t.hero.impact}"</span></p>
                 </div>
                 <div className="flex gap-4">
                   <span className="text-slate-600 select-none">09</span>

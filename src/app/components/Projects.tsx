@@ -1,42 +1,25 @@
 import React from "react";
 import { FolderGit2, ExternalLink, Github, Code2, Cpu } from "lucide-react";
-
-const projectsData = [
-  {
-    title: "E-Learning Platform (FYP)",
-    description: "A full-stack educational platform featuring RBAC, AI-powered support, and advanced search capabilities.",
-    technologies: ["Next.js", "NestJS", "PostgreSQL", "MongoDB", "Elasticsearch"],
-    github: "https://github.com/Bobolan123/edu-be"
-  },
-  {
-    title: "URL Shortener (.NET)",
-    description: "A robust URL shortening service built with ASP.NET Core MVC, featuring database integration and Docker support.",
-    technologies: ["ASP.NET Core", "C#", "PostgreSQL", "Entity Framework", "Docker"],
-    github: "https://github.com/Bobolan123/amd-dotnet"
-  },
-  {
-    title: "SHB Football Club",
-    description: "Ticketing and fan engagement platform with optimized UI and secure financial transaction processing.",
-    technologies: ["React (Vite)", "Tailwind CSS", "Node.js", "PostgreSQL", "REST API"],
-    github: "https://github.com/Bobolan123/SHB-Football-Club"
-  }
-];
+import { useLanguage } from "../context/useLanguage";
 
 export function Projects() {
+  const { t } = useLanguage();
+  const projectsData = t.projects.data;
+
   return (
     <section className="py-24 px-4 bg-background relative transition-colors duration-500">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-20">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-muted dark:bg-slate-900 border border-border dark:border-slate-800 text-blue-600 dark:text-blue-400 text-xs font-mono mb-4 shadow-sm">
             <Cpu className="w-3 h-3" />
-            <span>projects.exec()</span>
+            <span>{t.projects.badge}</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4 tracking-tight">Featured <span className="text-blue-600 dark:text-blue-500">Projects</span></h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4 tracking-tight">{t.projects.titlePrefix} <span className="text-blue-600 dark:text-blue-500">{t.projects.titleSuffix}</span></h2>
           <div className="w-20 h-1 bg-blue-600 mx-auto rounded-full"></div>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projectsData.map((project, index) => (
+          {projectsData.map((project: any, index: number) => (
             <ProjectCard
               key={index}
               {...project}

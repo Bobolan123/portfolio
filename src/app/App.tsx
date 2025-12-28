@@ -7,20 +7,23 @@ import { Experience } from "./components/Experience";
 import { Projects } from "./components/Projects";
 import { Contact } from "./components/Contact";
 import { Footer } from "./components/Footer";
+import { LanguageProvider } from "./context/LanguageContext";
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
-      <Navbar />
-      <main>
-        <div id="home"><Hero /></div>
-        <div id="education"><Education /></div>
-        <div id="skills"><Skills /></div>
-        <div id="experience"><Experience /></div>
-        <div id="projects"><Projects /></div>
-        <div id="contact"><Contact /></div>
-      </main>
-      <Footer />
-    </div>
+    <LanguageProvider>
+      <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
+        <Navbar />
+        <main>
+          <div id="home"><Hero /></div>
+          <div id="education"><Education /></div>
+          <div id="skills"><Skills /></div>
+          <div id="experience"><Experience /></div>
+          <div id="projects"><Projects /></div>
+          <div id="contact"><Contact /></div>
+        </main>
+        <Footer />
+      </div>
+    </LanguageProvider>
   );
 }

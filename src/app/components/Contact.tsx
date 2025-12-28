@@ -2,8 +2,10 @@ import React, { useState, useRef } from "react";
 import { Mail, Send, Phone, MapPin, CheckCircle2, Terminal } from "lucide-react";
 import { Button } from "./ui/button";
 import emailjs from "@emailjs/browser";
+import { useLanguage } from "../context/useLanguage";
 
 export function Contact() {
+  const { t } = useLanguage();
   const [formState, setFormState] = useState<"idle" | "submitting" | "success">("idle");
   const form = useRef<HTMLFormElement>(null);
 
@@ -44,9 +46,9 @@ export function Contact() {
         <div className="text-center mb-20">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-muted dark:bg-slate-900 border border-border dark:border-slate-800 text-blue-600 dark:text-blue-400 text-xs font-mono mb-4 shadow-sm">
             <Mail className="w-3 h-3" />
-            <span>contact.initiate()</span>
+            <span>{t.contact.badge}</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4 tracking-tight">Get In <span className="text-blue-600 dark:text-blue-500">Touch</span></h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4 tracking-tight">{t.contact.titlePrefix} <span className="text-blue-600 dark:text-blue-500">{t.contact.titleSuffix}</span></h2>
           <div className="w-20 h-1 bg-blue-600 mx-auto rounded-full"></div>
         </div>
 
@@ -54,7 +56,7 @@ export function Contact() {
           {/* Contact Info */}
           <div className="flex flex-col gap-8">
             <div className="bg-card dark:bg-slate-900/40 border border-border dark:border-slate-800 p-10 rounded-3xl flex-1 flex flex-col shadow-sm">
-              <h3 className="text-2xl font-bold mb-8 text-foreground">Contact Information</h3>
+              <h3 className="text-2xl font-bold mb-8 text-foreground">{t.contact.infoTitle}</h3>
               
               <div className="space-y-8 flex-1 flex flex-col justify-center">
                 <ContactDetail 
@@ -72,7 +74,7 @@ export function Contact() {
                 <ContactDetail 
                   icon={<MapPin className="w-6 h-6" />} 
                   title="Location" 
-                  content="Da Nang, Viet Nam"
+                  content={t.hero.locationLong}
                 />
               </div>
             </div>
@@ -88,8 +90,7 @@ export function Contact() {
                 <span className="text-[10px] font-mono text-muted-foreground dark:text-slate-600">terminal.log</span>
               </div>
               <p className="text-foreground dark:text-blue-400 font-mono text-sm leading-relaxed">
-                <span className="text-blue-600 dark:text-pink-500">&gt;</span> I'm currently seeking new opportunities. 
-                Feel free to reach out for collaborations or just a quick chat about tech!
+                <span className="text-blue-600 dark:text-pink-500">&gt;</span> {t.contact.terminalPrompt}
               </p>
             </div>
           </div>
@@ -103,7 +104,7 @@ export function Contact() {
             >
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label className="text-xs font-mono text-muted-foreground uppercase tracking-widest ml-1">Name</label>
+                  <label className="text-xs font-mono text-muted-foreground uppercase tracking-widest ml-1">{t.contact.form.name}</label>
                   <input 
                     name="from_name"
                     required
@@ -113,7 +114,7 @@ export function Contact() {
                   />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-xs font-mono text-muted-foreground uppercase tracking-widest ml-1">Email</label>
+                  <label className="text-xs font-mono text-muted-foreground uppercase tracking-widest ml-1">{t.contact.form.email}</label>
                   <input 
                     name="from_email"
                     required
@@ -125,7 +126,7 @@ export function Contact() {
               </div>
 
               <div className="space-y-2">
-                <label className="text-xs font-mono text-muted-foreground uppercase tracking-widest ml-1">Subject</label>
+                <label className="text-xs font-mono text-muted-foreground uppercase tracking-widest ml-1">{t.contact.form.subject}</label>
                 <input 
                   name="subject"
                   required
@@ -136,7 +137,7 @@ export function Contact() {
               </div>
 
               <div className="space-y-2 flex-1 flex flex-col">
-                <label className="text-xs font-mono text-muted-foreground uppercase tracking-widest ml-1">Message</label>
+                <label className="text-xs font-mono text-muted-foreground uppercase tracking-widest ml-1">{t.contact.form.message}</label>
                 <textarea 
                   name="message"
                   required
@@ -157,17 +158,17 @@ export function Contact() {
               >
                 {formState === "idle" && (
                   <span className="flex items-center gap-2">
-                    Send Message <Send className="w-4 h-4" />
+                    {t.contact.form.send} <Send className="w-4 h-4" />
                   </span>
                 )}
                 {formState === "submitting" && (
                   <span className="flex items-center gap-2">
-                    Processing... <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    {t.contact.form.processing} <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                   </span>
                 )}
                 {formState === "success" && (
                   <span className="flex items-center gap-2">
-                    Sent Successfully <CheckCircle2 className="w-4 h-4" />
+                    {t.contact.form.success} <CheckCircle2 className="w-4 h-4" />
                   </span>
                 )}
               </Button>
