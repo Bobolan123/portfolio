@@ -1,6 +1,7 @@
 import React from "react";
 import { FolderGit2, ExternalLink, Github, Code2, Cpu } from "lucide-react";
 import { useLanguage } from "../context/useLanguage";
+import { motion } from "framer-motion";
 
 export function Projects() {
   const { t } = useLanguage();
@@ -9,14 +10,19 @@ export function Projects() {
   return (
     <section className="py-24 px-4 bg-background relative transition-colors duration-500">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-20">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-20"
+        >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-muted dark:bg-slate-900 border border-border dark:border-slate-800 text-blue-600 dark:text-blue-400 text-xs font-mono mb-4 shadow-sm">
             <Cpu className="w-3 h-3" />
             <span>{t.projects.badge}</span>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4 tracking-tight">{t.projects.titlePrefix} <span className="text-blue-600 dark:text-blue-500">{t.projects.titleSuffix}</span></h2>
           <div className="w-20 h-1 bg-blue-600 mx-auto rounded-full"></div>
-        </div>
+        </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projectsData.map((project: any, index: number) => (
@@ -42,7 +48,13 @@ const ProjectCard = ({ title, description, technologies, link, github, index }: 
   key?: React.Key;
 }) => {
   return (
-    <div className="group bg-card dark:bg-slate-900/40 border border-border dark:border-slate-800 rounded-2xl overflow-hidden hover:border-blue-500/30 transition-all flex flex-col shadow-sm hover:shadow-md">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      className="group bg-card dark:bg-slate-900/40 border border-border dark:border-slate-800 rounded-2xl overflow-hidden hover:border-blue-500/30 transition-all duration-500 flex flex-col shadow-sm hover:shadow-xl hover:-translate-y-2"
+    >
       <div className="p-8 flex flex-col flex-grow">
         <div className="flex items-center justify-between mb-6">
           <div className="p-3 rounded-xl bg-muted dark:bg-slate-800 text-blue-600 dark:text-blue-400">
@@ -78,10 +90,9 @@ const ProjectCard = ({ title, description, technologies, link, github, index }: 
       </div>
       
       {/* Interactive Bottom Bar */}
-      <div className="px-8 py-4 bg-muted/30 dark:bg-slate-900/60 border-t border-border dark:border-slate-800 flex items-center justify-between opacity-0 group-hover:opacity-100 transition-opacity">
-        <span className="text-[10px] font-mono text-muted-foreground uppercase">Status: Production</span>
+      <div className="px-8 py-4 bg-muted/30 dark:bg-slate-900/60 border-t border-border dark:border-slate-800 flex items-center justify-end opacity-0 group-hover:opacity-100 transition-opacity">
         <Code2 className="w-4 h-4 text-muted-foreground/50" />
       </div>
-    </div>
+    </motion.div>
   );
 }

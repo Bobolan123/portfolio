@@ -1,6 +1,7 @@
 import React from "react";
 import { Mail, Phone, MapPin, Github, Linkedin, Terminal as TerminalIcon, Code2, FileText, ArrowRight } from "lucide-react";
 import { useLanguage } from "../context/useLanguage";
+import { motion } from "framer-motion";
 
 export function Hero() {
   const { t } = useLanguage();
@@ -30,62 +31,98 @@ export function Hero() {
       
       {/* Animated Glowing Orbs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-[10%] left-[10%] w-[400px] h-[400px] bg-blue-600/10 dark:bg-blue-600/20 rounded-full blur-[120px]" />
-        <div className="absolute bottom-[10%] right-[10%] w-[500px] h-[500px] bg-indigo-600/10 dark:bg-indigo-600/20 rounded-full blur-[120px]" />
+        <div className="absolute top-[10%] left-[10%] w-[400px] h-[400px] bg-blue-600/10 dark:bg-blue-600/20 rounded-full blur-[120px] animate-pulse" />
+        <div className="absolute bottom-[10%] right-[10%] w-[500px] h-[500px] bg-indigo-600/10 dark:bg-indigo-600/20 rounded-full blur-[120px] animate-pulse [animation-delay:2s]" />
       </div>
 
       <div className="max-w-5xl w-full relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="text-left">
+          <div className="text-left">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-600 dark:text-blue-400 text-xs font-mono mb-6">
                 <TerminalIcon className="w-3 h-3" />
                 <span>{t.hero.status}</span>
               </div>
+            </motion.div>
 
-              <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight leading-tight">
-                <span className="text-foreground">Nguyen</span><br />
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">Hoang Lan</span>
-              </h1>
+            <motion.h1 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="text-5xl md:text-7xl font-bold mb-6 tracking-tight leading-tight"
+            >
+              <span className="text-foreground">Nguyen</span><br />
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">Hoang Lan</span>
+            </motion.h1>
 
-              <div className="flex items-center gap-3 mb-8 origin-left">
-                <div className="h-[1px] w-12 bg-blue-500/50"></div>
-                <p className="text-xl md:text-2xl font-mono text-blue-600 dark:text-blue-400">
-                  {t.hero.role}
-                </p>
-              </div>
-
-              <p className="text-lg text-muted-foreground mb-10 max-w-xl leading-relaxed">
-              {t.hero.bio}
+            <motion.div 
+              initial={{ opacity: 0, scaleX: 0 }}
+              animate={{ opacity: 1, scaleX: 1 }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+              className="flex items-center gap-3 mb-8 origin-left"
+            >
+              <div className="h-[1px] w-12 bg-blue-500/50"></div>
+              <p className="text-xl md:text-2xl font-mono text-blue-600 dark:text-blue-400">
+                {t.hero.role}
               </p>
+            </motion.div>
 
-              <div className="flex flex-wrap gap-4 mb-10">
-                <ContactItem icon={<Mail className="w-4 h-4" />} text="logannguyenlan@gmail.com" />
-                <ContactItem icon={<MapPin className="w-4 h-4" />} text={t.hero.location} />
-              </div>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="text-lg text-muted-foreground mb-10 max-w-xl leading-relaxed"
+            >
+              {t.hero.bio}
+            </motion.p>
 
-              <div className="flex items-center gap-6">
-                <SocialLink icon={<Github className="w-6 h-6" />} href="https://github.com/Bobolan123" />
-                <SocialLink icon={<Linkedin className="w-6 h-6" />} href="https://linkedin.com/in/lannguyen124" />
-                <div className="h-10 w-[1px] bg-border mx-2"></div>
-                <a 
-                  href="/Core%20Resume.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group relative inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-600 dark:to-indigo-600 text-white rounded-xl font-bold transition-all shadow-lg overflow-hidden hover:scale-105 active:scale-95"
-                >
-                  {/* Shine effect */}
-                  <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
-                  
-                  <FileText className="w-5 h-5 group-hover:rotate-12 transition-transform" />
-                  <span>{t.hero.viewResume}</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </a>
-              </div>
-            </div>
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="flex flex-wrap gap-4 mb-10"
+            >
+              <ContactItem icon={<Mail className="w-5 h-5" />} text="logannguyenlan@gmail.com" />
+              <ContactItem icon={<MapPin className="w-5 h-5" />} text={t.hero.location} />
+            </motion.div>
 
-          <div className="hidden lg:block relative">
-            <div className="absolute inset-0 bg-gradient-to-tr from-blue-600/20 to-indigo-600/20 rounded-2xl blur-3xl transform -rotate-6"></div>
-            <div className="bg-slate-900 dark:bg-slate-950 border border-slate-800 rounded-xl overflow-hidden shadow-2xl relative">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              className="flex items-center gap-6"
+            >
+              <SocialLink icon={<Github className="w-7 h-7" />} href="https://github.com/Bobolan123" />
+              <SocialLink icon={<Linkedin className="w-7 h-7" />} href="https://linkedin.com/in/lannguyen124" />
+              <div className="h-10 w-[1px] bg-border mx-2"></div>
+              <a 
+                href="/Core%20Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-600 dark:to-indigo-600 text-white rounded-xl font-bold transition-all shadow-lg overflow-hidden hover:scale-105 active:scale-95"
+              >
+                {/* Shine effect */}
+                <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
+                
+                <FileText className="w-5 h-5 group-hover:rotate-12 transition-transform" />
+                <span>{t.hero.viewResume}</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </a>
+            </motion.div>
+          </div>
+
+          <motion.div 
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="hidden lg:block relative group"
+          >
+            <div className="absolute inset-0 bg-gradient-to-tr from-blue-600/20 to-indigo-600/20 rounded-2xl blur-3xl transform -rotate-6 group-hover:rotate-0 transition-transform duration-700"></div>
+            <div className="bg-slate-900 dark:bg-slate-950 border border-slate-800 rounded-xl overflow-hidden shadow-2xl relative transition-all duration-500 hover:scale-[1.02] hover:-translate-y-2">
               <div className="flex items-center gap-2 px-4 py-3 bg-slate-800/50 dark:bg-slate-900/50 border-b border-slate-800">
                 <div className="flex gap-1.5">
                   <div className="w-3 h-3 rounded-full bg-red-500/50"></div>
@@ -151,7 +188,7 @@ export function Hero() {
             <div className="absolute -top-6 -right-6 p-4 bg-card dark:bg-slate-900 border border-border dark:border-slate-800 rounded-2xl shadow-xl">
               <Code2 className="w-8 h-8 text-blue-600 dark:text-blue-400" />
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

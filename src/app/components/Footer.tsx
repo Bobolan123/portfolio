@@ -19,9 +19,9 @@ export function Footer() {
         </div>
 
         <div className="flex gap-4">
-          <SocialIcon icon={<Github className="w-4 h-4" />} href="https://github.com/Bobolan123" label="GitHub" />
-          <SocialIcon icon={<Linkedin className="w-4 h-4" />} href="https://linkedin.com/in/lannguyen124" label="LinkedIn" />
-          <SocialIcon icon={<Mail className="w-4 h-4" />} href="mailto:logannguyenlan@gmail.com" label="Email" />
+          <SocialIcon icon={<Github className="w-5 h-5" />} href="https://github.com/Bobolan123" label="GitHub" />
+          <SocialIcon icon={<Linkedin className="w-5 h-5" />} href="https://linkedin.com/in/lannguyen124" label="LinkedIn" />
+          <SocialIcon icon={<Mail className="w-5 h-5" />} href="mailto:logannguyenlan@gmail.com" label="Email" />
         </div>
 
         <div className="flex flex-col items-center gap-2 text-muted-foreground text-sm font-mono">

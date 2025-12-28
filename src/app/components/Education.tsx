@@ -1,6 +1,7 @@
 import React from "react";
 import { GraduationCap, Calendar, BookOpen } from "lucide-react";
 import { useLanguage } from "../context/useLanguage";
+import { motion } from "framer-motion";
 
 
 export function Education() {
@@ -8,14 +9,19 @@ export function Education() {
   return (
     <section className="py-24 px-4 bg-background relative transition-colors duration-500">
       <div className="max-w-6xl mx-auto relative z-10">
-        <div className="text-center mb-20">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-20"
+        >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-muted dark:bg-slate-900 border border-border dark:border-slate-800 text-blue-600 dark:text-blue-400 text-xs font-mono mb-4 shadow-sm">
             <BookOpen className="w-3 h-3" />
             <span>{t.education.badge}</span>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4 tracking-tight">{t.education.titlePrefix} <span className="text-blue-600 dark:text-blue-500">{t.education.titleSuffix}</span></h2>
           <div className="w-20 h-1 bg-blue-600 mx-auto rounded-full"></div>
-        </div>
+        </motion.div>
         
         <div className="grid md:grid-cols-2 gap-8">
           {t.education.data.map((edu: any, index: number) => (
@@ -37,7 +43,13 @@ function EducationCard({ degree, school, location, year, description, index }: {
   key?: React.Key;
 }) {
   return (
-    <div className="bg-card dark:bg-slate-900/40 border border-border dark:border-slate-800 p-10 rounded-3xl hover:border-blue-500/30 transition-all group relative overflow-hidden shadow-sm hover:shadow-md">
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      className="bg-card dark:bg-slate-900/40 border border-border dark:border-slate-800 p-10 rounded-3xl hover:border-blue-500/30 transition-all group relative overflow-hidden shadow-sm hover:shadow-md"
+    >
       <div className="absolute -right-4 -bottom-4 opacity-[0.03] group-hover:opacity-[0.05] transition-opacity text-foreground">
         <GraduationCap className="w-40 h-40" />
       </div>
@@ -61,6 +73,6 @@ function EducationCard({ degree, school, location, year, description, index }: {
           {description}
         </p>
       </div>
-    </div>
+    </motion.div>
   );
 }

@@ -78,7 +78,7 @@ export function Navbar() {
                 </a>
                 
                 {/* Tooltip Label */}
-                <div className="absolute left-16 opacity-0 group-hover:opacity-100 pointer-events-none transition-all duration-300 translate-x-[-10px] group-hover:translate-x-0">
+                <div className="absolute left-16 opacity-0 group-hover:opacity-100 pointer-events-none transition-all duration-500 translate-x-[-20px] group-hover:translate-x-0 scale-95 group-hover:scale-100">
                   <div className="bg-card dark:bg-slate-900 border border-border dark:border-slate-800 text-blue-600 dark:text-blue-400 text-[10px] uppercase tracking-widest font-bold py-2 px-4 rounded-lg shadow-xl whitespace-nowrap">
                     {link.name}
                   </div>
